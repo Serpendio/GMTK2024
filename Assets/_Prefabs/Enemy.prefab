@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4651885544598967276}
   - component: {fileID: 4014278290786754744}
   - component: {fileID: 612626197748455672}
+  - component: {fileID: 3986159628574116201}
   - component: {fileID: 866772630676786089}
   - component: {fileID: 823171073269204727}
   - component: {fileID: 7245797111726143790}
@@ -61,6 +62,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20deee12273fad448ab74d525b1b8a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  activateDistance: 5
+  pathUpdateSeconds: 0.5
+  nextWaypointDistance: 3
+  jumpThreshold: 1
+  jumpForce: 1
+  jumpOffset: 0.1
+  flipThreshold: 0.05
+--- !u!114 &3986159628574116201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925200908018651119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!212 &866772630676786089
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -161,7 +198,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}

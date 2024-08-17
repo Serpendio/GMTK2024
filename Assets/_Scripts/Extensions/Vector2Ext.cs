@@ -8,4 +8,7 @@ public static class Vector2Ext
         => to - from;
     public static Vector2 DirectionTo(this Vector2 from, Vector2 to)
         => from.VectorTo(to).normalized;
+    public static double Distance(this Vector2 from, Vector2 to)
+        => Vector2.Distance(from, to);
+
 }

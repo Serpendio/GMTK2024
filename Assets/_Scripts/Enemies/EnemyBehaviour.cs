@@ -1,6 +1,7 @@
 using Pathfinding;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyBehaviour : MonoBehaviour
@@ -74,23 +75,20 @@ public class EnemyBehaviour : MonoBehaviour
             return;
 
         this.isGrounded = transform.position.IsGrounded(this.offset);
-        if(!this.isGrounded)
+        if (!this.isGrounded)
         {
-            Debug.Log($"isGrounded {isGrounded}", this);
+            return;
         }
         Vector2 direction = body.position.DirectionTo((Vector2)path.vectorPath[currentWaypoint]);
 
-        if(this.isGrounded)
-        {
-            if (direction.y > jumpThreshold)
-            {
-                Debug.Log($"jump", this);
-
-                body.AddForce(jumpForce * this.enemy.Data.Speed * Vector2.up, ForceMode2D.Impulse);
-            }
-        }
+        //if(this.isGrounded)
+        //{
+        //    if (direction.y > jumpThreshold)
+        //    {
+        //        body.AddForce(jumpForce * this.enemy.Data.Speed * Vector2.up, ForceMode2D.Impulse);
+        //    }
+        //}
         var force = this.enemy.Data.Speed * Time.deltaTime * direction;
-        Debug.Log($"add force{force}", this);
         body.AddForce(force);
 
         var distance = body.position.Distance(path.vectorPath[currentWaypoint]);

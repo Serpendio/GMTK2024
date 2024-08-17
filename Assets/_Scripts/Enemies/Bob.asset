@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b76071ba6b7264eac8716ae12dfc53, type: 3}
   m_Name: Bob
   m_EditorClassIdentifier: 
+  Size: 1
+  Speed: 1000

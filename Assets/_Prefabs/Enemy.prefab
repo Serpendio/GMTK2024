@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  activateDistance: 50
+  activateDistance: 5
   pathUpdateSeconds: 0.5
   nextWaypointDistance: 3
   jumpThreshold: 1

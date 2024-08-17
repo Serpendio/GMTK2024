@@ -1,7 +1,4 @@
 using Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 [RequireComponent(typeof(Enemy))]
@@ -38,7 +35,12 @@ public class EnemyBehaviour : MonoBehaviour
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
     }
     bool TargetInRange()
-        => transform.Distance(target.transform) < this.activateDistance;
+    {
+        if(target==null)
+            return false;
+        return transform.Distance(target.transform) < this.activateDistance;
+    }
+
     private void FixedUpdate()
     {
         if (TargetInRange())

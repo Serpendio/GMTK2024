@@ -10,5 +10,4 @@ public class EnemyBehaviour : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
     }
-
 }

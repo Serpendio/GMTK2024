@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,7 +8,7 @@ public class Viewport : MonoBehaviour
     public Transform target;
     Camera cam;
     Rigidbody2D rb;
-    public float baseSize = 5, trackSpeed = 100;
+    public float baseSize = 5, trackSpeed = 2;
 
     private void Awake()
     {

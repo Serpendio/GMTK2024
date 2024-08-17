@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public float jumpForce = 30, maxJump = 4, moveSpeed = 10;
+    public float jumpForce = 30, maxJump = 4, moveForce = 10, moveSpeed = 10;
     float moveAmount;
     bool canJump = true;
     Rigidbody2D rb;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
-            rb.AddForce(Vector2.up * jumpForce * speedFactor, ForceMode2D.Impulse);
+            rb.AddForce(jumpForce * speedFactor * Vector2.up, ForceMode2D.Impulse);
             if (rb.velocity.y > maxJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, maxJump);
@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveAmount * moveSpeed, rb.velocity.y);
+        rb.AddForce(moveAmount * moveSpeed * Vector2.right);
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -moveSpeed, moveSpeed), rb.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

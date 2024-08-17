@@ -1512,7 +1512,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1658406157}
   - {fileID: 272153015}
   - {fileID: 1826269372}
   - {fileID: 2139047775}
@@ -1715,7 +1714,8 @@ Transform:
   m_LocalPosition: {x: 0.026283417, y: 0.7052707, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1658406157}
   m_Father: {fileID: 371854671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!231 &964259154
@@ -2479,7 +2479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1658406157
 Transform:
   m_ObjectHideFlags: 0
@@ -2488,12 +2488,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658406156}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7098005, w: 0.7044028}
+  m_LocalPosition: {x: 0.70545083, y: -0.020898998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 371854671}
+  m_Father: {fileID: 964259153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1658406158
 SpriteRenderer:
@@ -2535,7 +2535,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 58ea9072235df9546942dca9142d03b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3512,6 +3512,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2364592929394248852, guid: 99ce4858a6557334b90142a532a31bf4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892716148888896358, guid: 99ce4858a6557334b90142a532a31bf4, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7009552768199507868, guid: 99ce4858a6557334b90142a532a31bf4, type: 3}
       propertyPath: m_Name
       value: sSlime
@@ -3558,7 +3566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9161885447094537208, guid: 99ce4858a6557334b90142a532a31bf4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3573,8 +3581,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 712073855890227382, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561468971232719887, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607406172919985918, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1841360311318586807, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247456978616712676, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702243024146542247, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702243024146542247, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978635824862195584, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7253861975277710663, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
@@ -3620,6 +3656,14 @@ PrefabInstance:
     - target: {fileID: 7268986694243464214, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
       propertyPath: m_Name
       value: slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879034561270198790, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119908955429992088, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

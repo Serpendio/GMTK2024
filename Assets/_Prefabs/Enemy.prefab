@@ -62,9 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20deee12273fad448ab74d525b1b8a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   activateDistance: 3
-  pathUpdateSeconds: 0.5
+  pathUpdateSeconds: 0.1
   nextWaypointDistance: 3
   jumpThreshold: 1
   jumpForce: 1

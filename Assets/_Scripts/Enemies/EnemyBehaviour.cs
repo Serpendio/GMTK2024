@@ -1,4 +1,5 @@
 using Pathfinding;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Enemy))]
@@ -6,7 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     Enemy enemy;
     [Header("Pathfinding")]
-    public Transform target;
+    Transform target;
     public float activateDistance = 50f;
     public float pathUpdateSeconds = 0.5f;
     public float nextWaypointDistance = 3f;
@@ -36,6 +37,8 @@ public class EnemyBehaviour : MonoBehaviour
     }
     bool TargetInRange()
     {
+        target = Physics2D.OverlapCircleAll((Vector2)transform.position, activateDistance)
+            .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
         if(target==null)
             return false;
         return transform.Distance(target.transform) < this.activateDistance;

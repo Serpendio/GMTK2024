@@ -845,7 +845,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 3.5777996
+  m_Distance: 3.577799
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!231 &227418647
@@ -887,7 +887,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.2198389
+  m_Distance: 1.2198383
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!58 &227418649
@@ -1508,7 +1508,7 @@ Transform:
   m_GameObject: {fileID: 371854668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.31, y: 3.4876242, z: 0}
+  m_LocalPosition: {x: -12.12, y: 3.4876242, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1757,7 +1757,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.2198389
+  m_Distance: 1.2198383
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!231 &964259156
@@ -2762,7 +2762,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 3.5777996
+  m_Distance: 3.577799
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!231 &1826269374
@@ -3526,7 +3526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8558156047528745181, guid: 99ce4858a6557334b90142a532a31bf4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.337
+      value: -16.767
       objectReference: {fileID: 0}
     - target: {fileID: 8558156047528745181, guid: 99ce4858a6557334b90142a532a31bf4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3615,7 +3615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7253861975277710663, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.0465493
+      value: -20.47655
       objectReference: {fileID: 0}
     - target: {fileID: 7253861975277710663, guid: f603786c9c4b89f4cb63c62798949b2e, type: 3}
       propertyPath: m_LocalPosition.y

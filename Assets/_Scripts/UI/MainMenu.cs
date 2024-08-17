@@ -8,15 +8,22 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settings;
     [SerializeField] GameObject credis;
+    [SerializeField] GameObject LoadLevel;
     private void Start()
     {
         mainMenu.SetActive(true);
         settings.SetActive(false);
         credis.SetActive(false);
+        LoadLevel.SetActive(false);
     }
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        mainMenu.SetActive(false);
+        LoadLevel.SetActive(true);
+    }
+    public void LoadLever(int nub)
+    {
+        SceneManager.LoadScene(nub);
     }
     public void Settings()
     {
@@ -29,6 +36,7 @@ public class MainMenu : MonoBehaviour
     }
     public void backToMenu()
     {
+        LoadLevel.SetActive(false);
         settings.SetActive(false);
         credis.SetActive(false);
         mainMenu.SetActive(true);

@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 public class Resources : MonoBehaviour
 {
     public TextMeshProUGUI bigResource, smallResource, currentSize;
+    public Viewport viewport;
     public float bigResourceValue = 0, smallResourceValue = 0, currentSizeValue = 1;
     public float scaleSpeed = 1f;
 
@@ -22,21 +23,27 @@ public class Resources : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) && bigResourceValue > 0)
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             currentSizeValue += Time.deltaTime * scaleSpeed;
-            bigResourceValue -= Time.deltaTime * scaleSpeed;
-            bigResource.text = bigResourceValue.ToString();
+            if (currentSizeValue > bigResourceValue)
+            {
+                currentSizeValue = bigResourceValue;
+            }
             currentSize.text = currentSizeValue.ToString();
             transform.localScale = new Vector3(currentSizeValue, currentSizeValue, currentSizeValue);
+            viewport.UpdateScale(currentSizeValue);
         }
-        if (Input.GetKey(KeyCode.DownArrow) && smallResourceValue > 0 && currentSizeValue > 0.6f)
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             currentSizeValue -= Time.deltaTime * scaleSpeed;
-            smallResourceValue -= Time.deltaTime * scaleSpeed;
-            smallResource.text = smallResourceValue.ToString();
+            if (currentSizeValue < smallResourceValue)
+            {
+                currentSizeValue = smallResourceValue;
+            }
             currentSize.text = currentSizeValue.ToString();
             transform.localScale = new Vector3(currentSizeValue, currentSizeValue, currentSizeValue);
+            viewport.UpdateScale(currentSizeValue);
         }
     }
 

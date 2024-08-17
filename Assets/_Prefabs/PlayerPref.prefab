@@ -103,8 +103,9 @@ MonoBehaviour:
   bigResource: {fileID: 0}
   smallResource: {fileID: 0}
   currentSize: {fileID: 0}
-  bigResourceValue: 1.41
-  smallResourceValue: 1.39
+  viewport: {fileID: 0}
+  bigResourceValue: 1.1
+  smallResourceValue: 0.9
   currentSizeValue: 1
   scaleSpeed: 1
 --- !u!114 &2896366535478384917

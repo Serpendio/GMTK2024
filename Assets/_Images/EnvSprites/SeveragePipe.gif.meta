@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,7 +95,385 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SeveragePipe_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 359
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 753f6812adf9cd745be0e8a3215f3dc9
+      internalID: 1670310842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 359
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9ae2b2526fb5004d9922d87d97ce131
+      internalID: 1911897236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 359
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5aee99621b441499776842525bfa8d
+      internalID: 169432130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 295
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ed291cf275203f46a338ed08f06b15a
+      internalID: -1350472454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 295
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae52a93d3d62ad34fae53f7d84bef8ca
+      internalID: 552823394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 295
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 003d28b774eaf3b43b9fa9b872d1f4ad
+      internalID: -2067276881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 231
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b15008037e8345340bb1141f62819d1a
+      internalID: -1527801746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 231
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d8019325f4e154bbda9807717dadfe
+      internalID: -533820870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 231
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7f0b4f5db94bb419a8fa581ca46dcf
+      internalID: 94927724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 167
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d7ed6ed53fb89c4c9894250a1bdf775
+      internalID: -1755391788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 167
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bbb12ed933be6741bda9dffa1bef6cb
+      internalID: 432961326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 167
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb4d9763c04fe9d4d8a233c7502c8aa8
+      internalID: -1470660122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 103
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f62817698e4b6145b712b9ff8fdc781
+      internalID: 1492651986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 103
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aab3484777f84740b57ffc849595c29
+      internalID: -88308065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 103
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9dfcf575be93d74185f22f57f6ce112
+      internalID: 1920278740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 39
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53b7004555b13da48882851ccf68f1d5
+      internalID: 1745396752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 39
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1bb2040bfb9f14f998af22c7f1bb32
+      internalID: -1915257233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeveragePipe_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 39
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68b9137846b81ee4ebedc776bf33d319
+      internalID: 1966856855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +484,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SeveragePipe_0: 1670310842
+      SeveragePipe_1: 1911897236
+      SeveragePipe_10: 432961326
+      SeveragePipe_11: -1470660122
+      SeveragePipe_12: 1492651986
+      SeveragePipe_13: -88308065
+      SeveragePipe_14: 1920278740
+      SeveragePipe_15: 1745396752
+      SeveragePipe_16: -1915257233
+      SeveragePipe_17: 1966856855
+      SeveragePipe_2: 169432130
+      SeveragePipe_3: -1350472454
+      SeveragePipe_4: 552823394
+      SeveragePipe_5: -2067276881
+      SeveragePipe_6: -1527801746
+      SeveragePipe_7: -533820870
+      SeveragePipe_8: 94927724
+      SeveragePipe_9: -1755391788
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

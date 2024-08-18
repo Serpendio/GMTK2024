@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71b76071ba6b7264eac8716ae12dfc53, type: 3}
-  m_Name: Bob
+  m_Name: SlimeB
   m_EditorClassIdentifier: 
-  Size: 1
-  Speed: 1000
-  JumpForce: 100
-  AwarenessRange: 4
+  Size: 0
+  Speed: 0
+  JumpForce: 0
+  AwarenessRange: 0

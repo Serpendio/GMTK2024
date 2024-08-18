@@ -1,5 +1,6 @@
 using Pathfinding;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,41 +10,48 @@ public class EnemyBehaviour : MonoBehaviour
     Enemy enemy;
     [Header("Pathfinding")]
     Transform target;
-    public float activateDistance = 50f;
     public float pathUpdateSeconds = 0.5f;
     public float nextWaypointDistance = 3f;
 
     [Header("Jump")]
     public float jumpThreshold = 1f;
-    public float jumpForce = 1f;
-    public float jumpOffset = 0.1f;
-    float offset;
+    public float jumpOffsetX = 0.5f;
+    public float jumpOffsetY = 0.1f;
+    float offsetX;
+    float offsetY;
 
     Path path;
     int currentWaypoint = 0;
     bool isGrounded;
     Seeker seeker;
     Rigidbody2D body;
+    Collider2D collider2;
     [SerializeField] float flipThreshold = 0.05f;
 
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
 
-        seeker = gameObject.GetComponent<Seeker>();
-        body = gameObject.GetComponent<Rigidbody2D>();
-        offset = GetComponent<Collider2D>().bounds.extents.y + this.jumpOffset;
+        seeker = GetComponent<Seeker>();
+        body = GetComponent<Rigidbody2D>();
+        collider2 = GetComponent<Collider2D>();
+        offsetX = collider2.bounds.extents.x + this.jumpOffsetX;
+        offsetY = collider2.bounds.extents.y + this.jumpOffsetY;
 
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
     }
     bool TargetInRange()
     {
-        target = Physics2D.OverlapCircleAll((Vector2)transform.position, activateDistance)
+        target = Physics2D.OverlapCircleAll((Vector2)transform.position, this.enemy.Data.AwarenessRange)
             .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
         if(target==null)
             return false;
-        return transform.Distance(target.transform) < this.activateDistance;
+        return transform.Distance(target.transform) < this.enemy.Data.AwarenessRange;
     }
+
+    bool IsGrounded()
+        => Physics2D.OverlapCircleAll((Vector2)transform.position, offsetY)
+            .FirstOrDefault(c => c.CompareTag("Ground")) != null;
 
     private void FixedUpdate()
     {
@@ -74,20 +82,17 @@ public class EnemyBehaviour : MonoBehaviour
         if (currentWaypoint >= path.vectorPath.Count)
             return;
 
-        this.isGrounded = transform.position.IsGrounded(this.offset);
+        this.isGrounded = IsGrounded();
         if (!this.isGrounded)
-        {
             return;
-        }
-        Vector2 direction = body.position.DirectionTo((Vector2)path.vectorPath[currentWaypoint]);
 
-        //if(this.isGrounded)
-        //{
-        //    if (direction.y > jumpThreshold)
-        //    {
-        //        body.AddForce(jumpForce * this.enemy.Data.Speed * Vector2.up, ForceMode2D.Impulse);
-        //    }
-        //}
+        Vector2 direction = transform.position.DirectionTo((Vector2)path.vectorPath[currentWaypoint]);
+        
+        bool isBLocked = transform.position.IsBlocked(new Vector3(direction.x,-0.3f*Mathf.Abs(direction.x),0).normalized,this.offsetX);
+        if(this.isGrounded && isBLocked)
+        {
+            body.AddForce(this.enemy.Data.JumpForce * Time.deltaTime * new Vector2(direction.x/10,1).normalized, ForceMode2D.Impulse);
+        }
         var force = this.enemy.Data.Speed * Time.deltaTime * direction;
         body.AddForce(force);
 
@@ -108,11 +113,17 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(this.transform.position, this.activateDistance);
+        if(enemy!= null)
+        {
+            Gizmos.DrawWireSphere(this.transform.position, this.enemy.Data.AwarenessRange);
+        }
         Gizmos.color= Color.red;
-        Gizmos.DrawLine(this.transform.position, transform.position + Vector3.down * offset);
+        Gizmos.DrawLine(this.transform.position, transform.position + Vector3.right * offsetX);
+        Gizmos.DrawLine(this.transform.position, transform.position + Vector3.left * offsetX);
+        Gizmos.DrawLine(this.transform.position, transform.position + Vector3.down * offsetY);
     }
 
 }

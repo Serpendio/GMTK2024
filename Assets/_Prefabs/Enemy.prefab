@@ -62,12 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20deee12273fad448ab74d525b1b8a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activateDistance: 3
   pathUpdateSeconds: 0.1
   nextWaypointDistance: 3
   jumpThreshold: 1
-  jumpForce: 1
-  jumpOffset: 0.1
+  jumpOffsetX: 0.5
+  jumpOffsetY: 0.1
   flipThreshold: 0.05
 --- !u!114 &3986159628574116201
 MonoBehaviour:

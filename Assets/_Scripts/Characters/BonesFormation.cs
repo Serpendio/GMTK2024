@@ -23,14 +23,17 @@ public class BonesFormation : MonoBehaviour
         centre = Vector3.zero;
         for (int i = 0; i < transform.childCount; i++)
         {
-            bones.Add(transform.GetChild(i));
-            centre += bones[i].position;
+            if (transform.GetChild(i).name.StartsWith("bone"))
+            {
+                bones.Add(transform.GetChild(i));
+                centre += bones[i].position;
+            }
         }
-        centre /= transform.childCount;
+        centre /= bones.Count;
 
         float current_rotation = Vector3.SignedAngle(Vector3.up, topBone.position - bottomBone.position, Vector3.forward);
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < bones.Count; i++)
         {
             neighbours.Add(new List<Transform>());
             distances.Add(new List<float>());

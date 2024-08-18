@@ -1553,18 +1553,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 17693006254082355, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
-      propertyPath: separation
-      value: 441.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 17693006254082355, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
-      propertyPath: correction_amount
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 17693006254082355, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
-      propertyPath: rotation_correction
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 5583616558158989864, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: viewport
       value: 

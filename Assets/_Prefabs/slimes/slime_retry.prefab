@@ -1366,10 +1366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bba616b41c45fb45b48be554f8d916d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  separation: 150
-  rotation_correction: 100
-  correction_amount: 20
-  maxAngleOffset: 90
+  separation: 441.7
+  rotation_correction: 1000
+  correction_amount: 50
+  maxAngleOffset: 200
+  timePerCorrection: 10
   topBone: {fileID: 1989002756293060826}
   bottomBone: {fileID: 2150077455092181711}
 --- !u!114 &5583616558158989864

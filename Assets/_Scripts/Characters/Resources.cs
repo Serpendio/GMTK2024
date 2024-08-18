@@ -34,36 +34,46 @@ public class Resources : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            currentSizeValue += Time.deltaTime * scaleSpeed;
-            if (currentSizeValue > bigResourceValue)
-            {
-                currentSizeValue = bigResourceValue;
-            }
-            if (currentSize != null)
-            {
-                currentSize.text = currentSizeValue.ToString();
-            }
-            transform.localScale = new Vector3(currentSizeValue, currentSizeValue, currentSizeValue);
-            bonesFormation.ResetPositions();
-            if (viewport != null)
-                viewport.UpdateScale(currentSizeValue);
+            TryGrow();
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            currentSizeValue -= Time.deltaTime * scaleSpeed;
-            if (currentSizeValue < smallResourceValue)
-            {
-                currentSizeValue = smallResourceValue;
-            }
-            if (currentSize != null)
-            {
-                currentSize.text = currentSizeValue.ToString();
-            }
-            transform.localScale = new Vector3(currentSizeValue, currentSizeValue, currentSizeValue);
-            bonesFormation.ResetPositions();
-            if (viewport != null)
-                viewport.UpdateScale(currentSizeValue);
+            TryShrink();
         }
+    }
+
+    public void TryGrow()
+    {
+        currentSizeValue += Time.deltaTime * scaleSpeed;
+        if (currentSizeValue > bigResourceValue)
+        {
+            currentSizeValue = bigResourceValue;
+        }
+        if (currentSize != null)
+        {
+            currentSize.text = currentSizeValue.ToString();
+        }
+        transform.localScale = new Vector3(currentSizeValue, currentSizeValue, currentSizeValue);
+        //bonesFormation.ResetPositions();
+        if (viewport != null)
+            viewport.UpdateScale(currentSizeValue);
+    }
+
+    public void TryShrink()
+    {
+        currentSizeValue -= Time.deltaTime * scaleSpeed;
+        if (currentSizeValue < smallResourceValue)
+        {
+            currentSizeValue = smallResourceValue;
+        }
+        if (currentSize != null)
+        {
+            currentSize.text = currentSizeValue.ToString();
+        }
+        transform.localScale = new Vector3(currentSizeValue, currentSizeValue, currentSizeValue);
+        //bonesFormation.ResetPositions();
+        if (viewport != null)
+            viewport.UpdateScale(currentSizeValue);
     }
 
     public void AddBigResource(float value)

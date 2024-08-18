@@ -6,11 +6,10 @@ using UnityEngine.Rendering;
 
 public class Resources : MonoBehaviour
 {
-    public TextMeshProUGUI bigResource, smallResource, currentSize;
-    public Viewport viewport;
     BonesFormation bonesFormation;
     public float bigResourceValue = 0, smallResourceValue = 0, currentSizeValue = 1;
     public float scaleSpeed = 1f;
+    public float scaleOffset;
 
     private void Awake()
     {
@@ -18,75 +17,52 @@ public class Resources : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        if (bigResource != null)
-        {
-            bigResource.text = bigResourceValue.ToString();
-            smallResource.text = smallResourceValue.ToString();
-            currentSize.text = currentSizeValue.ToString();
-        }
         transform.localScale = Vector3.one * currentSizeValue;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            TryGrow();
-        }
-        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-        {
-            TryShrink();
-        }
-    }
-
-    public void TryGrow()
+    public virtual void TryGrow()
     {
         currentSizeValue += Time.deltaTime * scaleSpeed;
         if (currentSizeValue > bigResourceValue)
         {
             currentSizeValue = bigResourceValue;
         }
-        if (currentSize != null)
-        {
-            currentSize.text = currentSizeValue.ToString();
-        }
-        transform.localScale = new Vector3(currentSizeValue, currentSizeValue, currentSizeValue);
-        //bonesFormation.ResetPositions();
-        if (viewport != null)
-            viewport.UpdateScale(currentSizeValue);
+        transform.localScale = new Vector3(currentSizeValue - scaleOffset, currentSizeValue - scaleOffset, currentSizeValue - scaleOffset);
+        bonesFormation.ResetPositions();
     }
 
-    public void TryShrink()
+    public virtual void TryShrink()
     {
         currentSizeValue -= Time.deltaTime * scaleSpeed;
         if (currentSizeValue < smallResourceValue)
         {
             currentSizeValue = smallResourceValue;
         }
-        if (currentSize != null)
-        {
-            currentSize.text = currentSizeValue.ToString();
-        }
-        transform.localScale = new Vector3(currentSizeValue, currentSizeValue, currentSizeValue);
-        //bonesFormation.ResetPositions();
-        if (viewport != null)
-            viewport.UpdateScale(currentSizeValue);
+        transform.localScale = new Vector3(currentSizeValue - scaleOffset, currentSizeValue - scaleOffset, currentSizeValue - scaleOffset);
+        bonesFormation.ResetPositions();
     }
 
-    public void AddBigResource(float value)
+    public virtual void AddBigResource(float value)
     {
         bigResourceValue += value;
-        if (bigResource != null)
-            bigResource.text = bigResourceValue.ToString();
+        if (bigResourceValue < smallResourceValue)
+        {
+            bigResourceValue = smallResourceValue;
+        }
     }
 
-    public void AddSmallResource(float value)
+    public virtual void AddSmallResource(float value)
     {
         smallResourceValue += value;
-        if (smallResource != null)
-            smallResource.text = smallResourceValue.ToString();
+        if (smallResourceValue > bigResourceValue)
+        {
+            smallResourceValue = bigResourceValue;
+        }
+        if (smallResourceValue < 0.4)
+        {
+            smallResourceValue = 0.4f;
+        }
     }
 }

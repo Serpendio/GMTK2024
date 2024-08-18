@@ -134,6 +134,7 @@ MonoBehaviour:
   separation: 150
   rotation_correction: 100
   correction_amount: 20
+  maxAngleOffset: 40
   topBone: {fileID: 3539822074725980381}
   bottomBone: {fileID: 4510412777257303499}
 --- !u!1 &1427625146186588651

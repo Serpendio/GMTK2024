@@ -12,7 +12,7 @@ public class BonesFormation : MonoBehaviour
     private List<List<SpringJoint2D>> joints = new();
     private List<float> rotations = new();
     private List<float> angles_from_centre = new();
-    [Min(0), SerializeField] private float separation = 50f, rotation_correction = 100f, correction_amount = 20;
+    [Min(0), SerializeField] private float separation = 50f, rotation_correction = 100f, correction_amount = 20, maxAngleOffset = 90;
     [SerializeField] private Transform topBone, bottomBone;
     Vector3 centre;
 
@@ -79,7 +79,7 @@ public class BonesFormation : MonoBehaviour
 
         // it'd be nice if we could correct by a small amount each frame, but that doesn't seem to work
         float current_rotation = Vector3.SignedAngle(Vector3.up, topBone.position - bottomBone.position, Vector3.forward);
-        if (Mathf.Abs(current_rotation) > 90)
+        if (Mathf.Abs(current_rotation) > maxAngleOffset)
         {
             ResetRotation(1);
             ResetPositions();

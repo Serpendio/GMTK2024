@@ -296,7 +296,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   separation: 52.82
-  dist_before_panic: 2
+  rotation_correction: 100
+  correction_amount: 20
+  maxAngleOffset: 40
   topBone: {fileID: 8538835146440783505}
   bottomBone: {fileID: 7326499577626015739}
 --- !u!114 &6676627443798530129

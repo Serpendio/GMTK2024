@@ -1,8 +1,6 @@
 using Pathfinding;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Seeker))]
 public class EnemyBehaviour : MonoBehaviour
@@ -10,7 +8,9 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] EnemyData Data;
     [Header("Pathfinding")]
     Transform target;
+    Vector3 idleTarget;
     public float pathUpdateSeconds = 0.5f;
+    public float idleSeconds = 5;
     public float nextWaypointDistance = 3f;
 
     [Header("Jump")]
@@ -24,6 +24,9 @@ public class EnemyBehaviour : MonoBehaviour
     bool isGrounded;
     Seeker seeker;
     [SerializeField] Rigidbody2D body;
+    bool isIdle = true;
+    int currentIdleTime = 0;
+
 
     private void Awake()
     {
@@ -33,14 +36,35 @@ public class EnemyBehaviour : MonoBehaviour
         offsetY = Data.Size * transform.localScale.x + groundCheckOffsetY;
 
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
+        InvokeRepeating(nameof(UpdateIdleTime), 0f, 1);
+    }
+    void UpdateIdleTime()
+    {
+        if (currentIdleTime >= idleSeconds)
+            return;
+
+        currentIdleTime++;
+        if(currentIdleTime >= idleSeconds)
+        {
+            isIdle= true;
+        }
     }
     bool TargetInRange()
     {
         target = Physics2D.OverlapCircleAll(body.position, Data.AwarenessRange)
             .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
+
         if(target==null)
             return false;
-        return body.position.Distance(target.transform.position.To2D()) < Data.AwarenessRange;
+
+        var check = body.position.Distance(target.transform.position.To2D()) < Data.AwarenessRange;
+        if (check)
+        {
+            isIdle = false;
+            currentIdleTime = 0;
+        }
+
+        return check;
     }
 
     bool IsGrounded()
@@ -49,15 +73,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (TargetInRange())
-        {
-            PathFollow();
-        }
-        else
-        {
-            PathIdle();
-        }
-
+        PathFollow();
     }
     void UpdatePath()
     {
@@ -68,11 +84,23 @@ public class EnemyBehaviour : MonoBehaviour
         {
             seeker.StartPath(body.position, target.position, OnPathComplete);
         }
-        else
+        else if(IdleTarget())
         {
-            seeker.StartPath(body.position, body.position + Vector2Ext.RandomVector(1, 0));
+            seeker.StartPath(body.position, idleTarget, OnPathComplete);
         }
     }
+
+    private bool IdleTarget()
+    {
+        if (!this.isIdle)
+            return false;
+
+        this.idleTarget = body.position + new Vector2(Random.Range(-Data.IdleRange, Data.IdleRange),0);
+        isIdle= false;
+        currentIdleTime = 0;
+        return true;
+    }
+
     void OnPathComplete(Path path)
     {
         if (path.error)
@@ -107,10 +135,6 @@ public class EnemyBehaviour : MonoBehaviour
         {
             currentWaypoint++;
         }
-    }
-    void PathIdle()
-    {
-
     }
 
     private void OnDrawGizmos()

@@ -15,4 +15,5 @@ MonoBehaviour:
   Size: 2
   Speed: 2000
   JumpForce: 200
-  AwarenessRange: 5
+  AwarenessRange: 15
+  IdleRange: 7

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(Enemy),typeof(Seeker))]
 public class EnemyBehaviour : MonoBehaviour
 {
     Enemy enemy;
@@ -24,33 +24,29 @@ public class EnemyBehaviour : MonoBehaviour
     int currentWaypoint = 0;
     bool isGrounded;
     Seeker seeker;
-    Rigidbody2D body;
-    Collider2D collider2;
-    [SerializeField] float flipThreshold = 0.05f;
+    [SerializeField] Rigidbody2D body;
 
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
-
         seeker = GetComponent<Seeker>();
-        body = GetComponent<Rigidbody2D>();
-        collider2 = GetComponent<Collider2D>();
-        offsetX = collider2.bounds.extents.x + this.jumpOffsetX;
-        offsetY = collider2.bounds.extents.y + this.jumpOffsetY;
+
+        offsetX = enemy.Data.Size + jumpOffsetX;
+        offsetY = enemy.Data.Size + jumpOffsetY;
 
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
     }
     bool TargetInRange()
     {
-        target = Physics2D.OverlapCircleAll((Vector2)transform.position, this.enemy.Data.AwarenessRange)
+        target = Physics2D.OverlapCircleAll(body.position, this.enemy.Data.AwarenessRange)
             .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
         if(target==null)
             return false;
-        return transform.Distance(target.transform) < this.enemy.Data.AwarenessRange;
+        return body.position.Distance(target.transform.position.To2D()) < this.enemy.Data.AwarenessRange;
     }
 
     bool IsGrounded()
-        => Physics2D.OverlapCircleAll((Vector2)transform.position, offsetY)
+        => Physics2D.OverlapCircleAll(body.position, offsetY)
             .FirstOrDefault(c => c.CompareTag("Ground")) != null;
 
     private void FixedUpdate()
@@ -86,9 +82,9 @@ public class EnemyBehaviour : MonoBehaviour
         if (!this.isGrounded)
             return;
 
-        Vector2 direction = transform.position.DirectionTo((Vector2)path.vectorPath[currentWaypoint]);
+        Vector2 direction = body.position.DirectionTo((Vector2)path.vectorPath[currentWaypoint]);
         
-        bool isBLocked = transform.position.IsBlocked(new Vector3(direction.x,-0.3f*Mathf.Abs(direction.x),0).normalized,this.offsetX);
+        bool isBLocked = body.position.IsBlocked(new Vector2(direction.x,-0.3f*Mathf.Abs(direction.x)).normalized,this.offsetX);
         if(this.isGrounded && isBLocked)
         {
             body.AddForce(this.enemy.Data.JumpForce * Time.deltaTime * new Vector2(direction.x/10,1).normalized, ForceMode2D.Impulse);
@@ -101,16 +97,6 @@ public class EnemyBehaviour : MonoBehaviour
         {
             currentWaypoint++;
         }
-
-        //flip graphics
-        if(body.velocity.x > this.flipThreshold)
-        {
-            transform.localScale = transform.localScale.With(x: -1f * Mathf.Abs(transform.localScale.x));
-        }
-        else if(body.velocity.x < -this.flipThreshold)
-        {
-            transform.localScale = transform.localScale.With(x: Mathf.Abs(transform.localScale.x));
-        }
     }
 
 
@@ -118,12 +104,12 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if(enemy!= null)
         {
-            Gizmos.DrawWireSphere(this.transform.position, this.enemy.Data.AwarenessRange);
+            Gizmos.DrawWireSphere(this.body.position, this.enemy.Data.AwarenessRange);
         }
         Gizmos.color= Color.red;
-        Gizmos.DrawLine(this.transform.position, transform.position + Vector3.right * offsetX);
-        Gizmos.DrawLine(this.transform.position, transform.position + Vector3.left * offsetX);
-        Gizmos.DrawLine(this.transform.position, transform.position + Vector3.down * offsetY);
+        Gizmos.DrawLine(this.body.position, body.position + Vector2.right * offsetX);
+        Gizmos.DrawLine(this.body.position, body.position + Vector2.left * offsetX);
+        Gizmos.DrawLine(this.body.position, body.position + Vector2.down * offsetY);
     }
 
 }

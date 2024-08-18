@@ -196,6 +196,8 @@ GameObject:
   - component: {fileID: 1054570125807648553}
   - component: {fileID: 8444138000150989029}
   - component: {fileID: 6507949010631047163}
+  - component: {fileID: 6157195255607517709}
+  - component: {fileID: 5127555511406431310}
   m_Layer: 0
   m_Name: sSlime_retry
   m_TagString: Untagged
@@ -350,18 +352,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &3739100230007632714
-  m_Script: {fileID: 11500000, guid: 2e3a8f550a20b134e8fbef519f83b216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerShouldBeBigger: 0
-  affectsBigResource: 0
-  giveDamageSpeed: 1
-  takeDamageSpeed: 1
-  resourceMultiplier: 0.5
-  numIncorrect: 0
-  numCorrect: 0
-  player: {fileID: 0}
 --- !u!114 &6507949010631047163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +370,35 @@ MonoBehaviour:
   groundCheckOffsetX: 1
   groundCheckOffsetY: 0.5
   body: {fileID: 6689133045933815069}
+--- !u!114 &6157195255607517709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851808960722281125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3a8f550a20b134e8fbef519f83b216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShouldBeBigger: 0
+  affectsBigResource: 0
+  giveDamageSpeed: 1
+  takeDamageSpeed: 1
+  resourceMultiplier: 0.5
+  numIncorrect: 0
+  numCorrect: 0
+  player: {fileID: 0}
+--- !u!114 &5127555511406431310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851808960722281125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c1bfeabb04d6da45830118ee4892fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1944,3 +1963,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   correctSide: 0
+--- !u!114 &3739100230007632714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3a8f550a20b134e8fbef519f83b216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShouldBeBigger: 0
+  affectsBigResource: 0
+  giveDamageSpeed: 1
+  takeDamageSpeed: 1
+  resourceMultiplier: 0.5
+  numIncorrect: 0
+  numCorrect: 0
+  player: {fileID: 0}

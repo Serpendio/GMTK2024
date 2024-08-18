@@ -7,15 +7,14 @@ public class Player : MonoBehaviour
 {
     public float jumpForce = 30, maxJump = 4, moveForce = 10, moveSpeed = 10;
     float moveAmount;
-    bool canJump = true;
+    public int canJump = 0;
     Rigidbody2D rb;
-    Resources resources;
+    [SerializeField] Resources resources;
 
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        resources = GetComponent<Resources>();
     }
 
     private void Update()
@@ -30,7 +29,7 @@ public class Player : MonoBehaviour
             speedFactor = 1 - Mathf.Sqrt(resources.currentSizeValue - 1) / 5;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (Input.GetKeyDown(KeyCode.Space) && (canJump > 0))
         {
             rb.AddForce(jumpForce * speedFactor * Vector2.up, ForceMode2D.Impulse);
             if (rb.velocity.y > maxJump)
@@ -44,21 +43,5 @@ public class Player : MonoBehaviour
     {
         rb.AddForce(moveAmount * moveSpeed * Vector2.right);
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -moveSpeed, moveSpeed), rb.velocity.y);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            canJump = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            canJump = false;
-        }
     }
 }

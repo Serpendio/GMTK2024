@@ -1,79 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyWeakpoint : MonoBehaviour
 {
-    public bool shouldBeBigger = false;
-    public bool givesBigResource = false;
+    public bool playerShouldBeBigger = false;
+    public bool affectsBigResource = false;
+    public float giveDamageSpeed = 1f;
+    public float takeDamageSpeed = 1f;
+    public float resourceMultiplier = 0.5f;
+    public int numIncorrect = 0;
+    public int numCorrect = 0;
+    public Resources player;
+    private Resources self;
 
-    void Start()
+    void Awake()
     {
-        
+        self = GetComponent<Resources>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        bool playerTakeDamage = false;
+        bool selfTakeDamage = false;
+        if (numCorrect > 0)
         {
-            if (shouldBeBigger)
+            selfTakeDamage = (playerShouldBeBigger && player.transform.localScale.x > transform.localScale.x)
+                || (!playerShouldBeBigger && player.transform.localScale.x < transform.localScale.x);
+            playerTakeDamage = !selfTakeDamage;
+        }
+        else if (numIncorrect > 0)
+        {
+            playerTakeDamage = true;
+        }
+
+        if (playerTakeDamage)
+        {
+            player.transform.localScale -=  giveDamageSpeed * Time.deltaTime * Vector3.one;
+            if (affectsBigResource)
             {
-                if (transform.parent.localScale.x < collision.transform.parent.localScale.x)
-                {
-                    if (givesBigResource)
-                    {
-                        collision.transform.parent.GetComponent<Resources>().AddBigResource(.4f);
-                    }
-                    else
-                    {
-                        collision.transform.parent.GetComponent<Resources>().AddSmallResource(.4f);
-                    }
-                    transform.parent.localScale -= Vector3.one * .4f;
-                    if (transform.parent.localScale.x < .4f)
-                    {
-                        Destroy(transform.parent.gameObject);
-                    }
-                }
-                else
-                {
-                    collision.transform.parent.localScale -= Vector3.one * .4f;
-                    if (collision.transform.parent.localScale.x < .4f)
-                    {
-                        Destroy(collision.transform.parent.gameObject);
-                    }
-                }
+                player.AddBigResource(-giveDamageSpeed * Time.deltaTime * resourceMultiplier);
             }
             else
             {
-                if (transform.parent.localScale.x > collision.transform.parent.localScale.x)
-                {
-                    if (givesBigResource)
-                    {
-                        collision.transform.parent.GetComponent<Resources>().AddBigResource(.4f);
-                    }
-                    else
-                    {
-                        collision.transform.parent.GetComponent<Resources>().AddSmallResource(.4f);
-                    }
-                    transform.parent.localScale -= Vector3.one * .4f;
-                    if (transform.parent.localScale.x < .4f)
-                    {
-                        Destroy(transform.parent.gameObject);
-                    }
-                }
-                else
-                {
-                    collision.transform.parent.localScale -= Vector3.one * .4f;
-                    if (collision.transform.parent.localScale.x < .4f)
-                    {
-                        Destroy(collision.transform.parent.gameObject);
-                    }
-                }
+                player.AddSmallResource(-giveDamageSpeed * Time.deltaTime * resourceMultiplier);
+            }
+
+            if (player.transform.localScale.x < .4f)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
     }

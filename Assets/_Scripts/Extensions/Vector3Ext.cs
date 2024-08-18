@@ -23,14 +23,6 @@ public static class Vector3Ext
     public static Vector2 To2D(this Vector3 vector)
         => (Vector2)vector;
 
-    public static Vector2 RandomDirection()
-        => Random.insideUnitCircle.normalized;
-    public static Vector2 RandomVector(float maxMagnitude, float minMagnitude = 0)
-    {
-        var factor = Random.Range(minMagnitude, maxMagnitude);
-
-        return factor * RandomDirection();
-    }
     public static bool IsGrounded(this Vector3 position, float offset)
         => Physics2D.RaycastAll(position, Vector3.down, offset)
         .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));

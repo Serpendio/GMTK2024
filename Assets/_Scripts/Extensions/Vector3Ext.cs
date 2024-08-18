@@ -23,6 +23,12 @@ public static class Vector3Ext
     public static bool IsGrounded(this Vector3 position, float offset)
         => Physics2D.RaycastAll(position, Vector3.down, offset)
         .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));
+    public static bool IsBlocked(this Vector3 position, Vector3 direction,float offset)
+        => Physics2D.RaycastAll(position, direction, offset)
+        .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));
     public static bool IsGrounded(this Vector3 position, Collider2D collider, float offset)
         => position.IsGrounded(collider.bounds.extents.y + offset);
+    public static bool IsBlocked(this Vector3 position, Collider2D collider, float offset)
+        => position.IsBlocked(position.DirectionTo(collider.transform.position),collider.bounds.extents.x + offset);
+
 }

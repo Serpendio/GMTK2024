@@ -20,6 +20,10 @@ public static class Vector3Ext
     public static float Distance(this Vector3 from, Vector3 to)
         => Vector3.Distance(from, to);
 
+    public static Vector2 To2D(this Vector3 vector)
+        => (Vector2)vector;
+
+
     public static bool IsGrounded(this Vector3 position, float offset)
         => Physics2D.RaycastAll(position, Vector3.down, offset)
         .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEngine.UI.Image;
 
@@ -18,4 +19,7 @@ public static class Vector2Ext
         => Vector2.Distance(from, to);
     public static Vector3 To3D(this Vector2 vector, float? z = null)
         => new Vector3(vector.x, vector.y, (float)(z == null ? 0 : z));
+    public static bool IsBlocked(this Vector2 position, Vector2 direction, float offset)
+        => Physics2D.RaycastAll(position, direction, offset)
+        .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));
 }

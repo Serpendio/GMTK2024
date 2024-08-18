@@ -10,7 +10,6 @@ public class EnemyBehaviour : MonoBehaviour
     Transform target;
     Vector3 idleTarget;
     public float pathUpdateSeconds = 0.5f;
-    public float idleSeconds = 5;
     public float nextWaypointDistance = 3f;
 
     [Header("Jump")]
@@ -40,11 +39,11 @@ public class EnemyBehaviour : MonoBehaviour
     }
     void UpdateIdleTime()
     {
-        if (currentIdleTime >= idleSeconds)
+        if (currentIdleTime >= Data.IdleSeconds)
             return;
 
         currentIdleTime++;
-        if(currentIdleTime >= idleSeconds)
+        if(currentIdleTime >= Data.IdleSeconds)
         {
             isIdle= true;
         }

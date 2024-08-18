@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71b76071ba6b7264eac8716ae12dfc53, type: 3}
-  m_Name: SlimeB
+  m_Name: SlimeS
   m_EditorClassIdentifier: 
   Size: 2
-  Speed: 2400
-  JumpForce: 300
-  AwarenessRange: 15
-  IdleRange: 7
-  IdleSeconds: 6
+  Speed: 2000
+  JumpForce: 200
+  AwarenessRange: 14
+  IdleRange: 5
+  IdleSeconds: 4

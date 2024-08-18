@@ -23,7 +23,7 @@ public abstract class _Singleton<T> : MonoBehaviour
         if (dontDestroyOnLoad)
             DontDestroyOnLoad(gameObject);
     }
-    private void OnValidate()
+    protected virtual void OnValidate()
         => Init();
     private void Init()
     {

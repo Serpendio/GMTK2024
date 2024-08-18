@@ -137,6 +137,7 @@ MonoBehaviour:
   rotation_correction: 100
   correction_amount: 20
   maxAngleOffset: 40
+  timePerCorrection: 5
   topBone: {fileID: 3539822074725980381}
   bottomBone: {fileID: 4510412777257303499}
 --- !u!114 &38677447563295848
@@ -181,11 +182,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 9ada0c65cc7505948ba2f45b8062a7a0, type: 2}
   pathUpdateSeconds: 0.5
-  idleSeconds: 4
   nextWaypointDistance: 3
   groundCheckOffsetX: 1
   groundCheckOffsetY: 0.5
-  body: {fileID: 0}
+  body: {fileID: 6689133045933815069}
 --- !u!1 &1427625146186588651
 GameObject:
   m_ObjectHideFlags: 0

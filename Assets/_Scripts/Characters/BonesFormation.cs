@@ -12,9 +12,10 @@ public class BonesFormation : MonoBehaviour
     private List<List<SpringJoint2D>> joints = new();
     private List<float> rotations = new();
     private List<float> angles_from_centre = new();
-    [Min(0), SerializeField] private float separation = 50f, rotation_correction = 100f, correction_amount = 20, maxAngleOffset = 90;
+    [Min(0), SerializeField] private float separation = 50f, rotation_correction = 100f, correction_amount = 20, maxAngleOffset = 90, timePerCorrection = 5;
     [SerializeField] private Transform topBone, bottomBone;
     Vector3 centre;
+    float timeSinceLastCorrection = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,13 @@ public class BonesFormation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        timeSinceLastCorrection += Time.fixedDeltaTime;
+        if (timeSinceLastCorrection > timePerCorrection)
+        {
+            timeSinceLastCorrection = 0;
+            ResetRotation(rotation_correction);
+            ResetPositions();
+        }
 
         centre = Vector3.zero;
         for (int i = 0; i < bones.Count; i++)
@@ -83,6 +91,7 @@ public class BonesFormation : MonoBehaviour
         {
             ResetRotation(1);
             ResetPositions();
+            timeSinceLastCorrection = 0;
         }
 
         current_rotation = Vector3.SignedAngle(Vector3.up, topBone.position - bottomBone.position, Vector3.forward);

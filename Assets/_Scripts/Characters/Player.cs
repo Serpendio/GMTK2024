@@ -9,13 +9,12 @@ public class Player : MonoBehaviour
     float moveAmount;
     public int canJump = 0;
     Rigidbody2D rb;
-    Resources resources;
+    [SerializeField] Resources resources;
 
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        resources = GetComponent<Resources>();
     }
 
     private void Update()

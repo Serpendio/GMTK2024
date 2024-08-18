@@ -9,6 +9,7 @@ public class Viewport : MonoBehaviour
     Camera cam;
     Rigidbody2D rb;
     public float baseSize = 5, trackSpeed = 2;
+    public Vector3 offset;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class Viewport : MonoBehaviour
 
     private void Update()
     {
-        rb.AddForce((target.position + Vector3.back * 10 - transform.position) * trackSpeed);
+        rb.AddForce((target.position - transform.position + offset) * trackSpeed);
     }
 
     public void UpdateScale(float scale)

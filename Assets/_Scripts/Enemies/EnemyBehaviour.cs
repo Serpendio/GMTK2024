@@ -141,7 +141,7 @@ public class EnemyBehaviour : MonoBehaviour
         Gizmos.DrawWireSphere(this.body.position, Data.AwarenessRange);
         Gizmos.DrawWireSphere(this.body.position, Data.IdleRange);
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(this.body.position, Data.Size);
+        Gizmos.DrawWireSphere(this.body.position, Data.Size * transform.localScale.x);
 
         Gizmos.color= Color.red;
         Gizmos.DrawLine(this.body.position, body.position + Vector2.right * offsetX);

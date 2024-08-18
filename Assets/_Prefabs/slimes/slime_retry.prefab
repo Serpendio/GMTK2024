@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bba616b41c45fb45b48be554f8d916d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  separation: 50
+  separation: 150
   rotation_strength: 10
   topBone: {fileID: 1989002756293060826}
   bottomBone: {fileID: 2150077455092181711}

@@ -439,8 +439,8 @@ Transform:
   m_GameObject: {fileID: 590119454}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.05, y: -2.87, z: 0}
-  m_LocalScale: {x: 24.59, y: 0.28, z: 1}
+  m_LocalPosition: {x: -1.05, y: -3.41, z: 0}
+  m_LocalScale: {x: 24.59, y: 1.008, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1315,6 +1315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FromBelowEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2558975902660962280, guid: a4bed983052cd764aa4c18e9b2f6e20a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6379970035314413169, guid: a4bed983052cd764aa4c18e9b2f6e20a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.114
@@ -1372,6 +1376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FromAboveEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1269611854209143304, guid: b58dda80280f1c945b082e6ccddda0de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3423420550292602441, guid: b58dda80280f1c945b082e6ccddda0de, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.5
@@ -1425,6 +1433,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 17693006254082355, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
+      propertyPath: separation
+      value: 441.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 17693006254082355, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
+      propertyPath: correction_amount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 17693006254082355, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
+      propertyPath: rotation_correction
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5583616558158989864, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: viewport
       value: 

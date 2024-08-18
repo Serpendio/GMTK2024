@@ -23,15 +23,15 @@ public class EnemyWeakpoint : MonoBehaviour
         {
             if (shouldBeBigger)
             {
-                if (transform.parent.localScale.x < collision.transform.localScale.x)
+                if (transform.parent.localScale.x < collision.transform.parent.localScale.x)
                 {
                     if (givesBigResource)
                     {
-                        collision.gameObject.GetComponent<Resources>().AddBigResource(.4f);
+                        collision.transform.parent.GetComponent<Resources>().AddBigResource(.4f);
                     }
                     else
                     {
-                        collision.gameObject.GetComponent<Resources>().AddSmallResource(.4f);
+                        collision.transform.parent.GetComponent<Resources>().AddSmallResource(.4f);
                     }
                     transform.parent.localScale -= Vector3.one * .4f;
                     if (transform.parent.localScale.x < .4f)
@@ -41,24 +41,24 @@ public class EnemyWeakpoint : MonoBehaviour
                 }
                 else
                 {
-                    collision.transform.localScale -= Vector3.one * .4f;
-                    if (collision.transform.localScale.x < .4f)
+                    collision.transform.parent.localScale -= Vector3.one * .4f;
+                    if (collision.transform.parent.localScale.x < .4f)
                     {
-                        Destroy(collision.transform.gameObject);
+                        Destroy(collision.transform.parent.gameObject);
                     }
                 }
             }
             else
             {
-                if (transform.parent.localScale.x > collision.transform.localScale.x)
+                if (transform.parent.localScale.x > collision.transform.parent.localScale.x)
                 {
                     if (givesBigResource)
                     {
-                        collision.gameObject.GetComponent<Resources>().AddBigResource(.4f);
+                        collision.transform.parent.GetComponent<Resources>().AddBigResource(.4f);
                     }
                     else
                     {
-                        collision.gameObject.GetComponent<Resources>().AddSmallResource(.4f);
+                        collision.transform.parent.GetComponent<Resources>().AddSmallResource(.4f);
                     }
                     transform.parent.localScale -= Vector3.one * .4f;
                     if (transform.parent.localScale.x < .4f)
@@ -68,10 +68,10 @@ public class EnemyWeakpoint : MonoBehaviour
                 }
                 else
                 {
-                    collision.transform.localScale -= Vector3.one * .4f;
-                    if (collision.transform.localScale.x < .4f)
+                    collision.transform.parent.localScale -= Vector3.one * .4f;
+                    if (collision.transform.parent.localScale.x < .4f)
                     {
-                        Destroy(collision.transform.gameObject);
+                        Destroy(collision.transform.parent.gameObject);
                     }
                 }
             }

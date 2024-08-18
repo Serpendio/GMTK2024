@@ -4,32 +4,38 @@ using UnityEngine;
 
 public class BonesFormation : MonoBehaviour
 {
-    readonly private List<Transform> bones = new();
-    readonly private List<List<Transform>> neighbours = new();
-    readonly private List<List<float>> distances = new();
-    readonly private List<Vector3> positions = new();
-    readonly private List<Rigidbody2D> rigidbodies = new();
-    readonly private List<List<SpringJoint2D>> joints = new();
-    readonly private List<float> rotations = new();
-    [Min(0), SerializeField] private float separation = 50f, dist_before_panic = 1f;
+    private List<Transform> bones = new();
+    private List<List<Transform>> neighbours = new();
+    private List<List<float>> distances = new();
+    private List<Vector3> positions = new();
+    private List<Rigidbody2D> rigidbodies = new();
+    private List<List<SpringJoint2D>> joints = new();
+    private List<float> rotations = new();
+    private List<float> angles_from_centre = new();
+    [Min(0), SerializeField] private float separation = 50f, rotation_correction = 100f, correction_amount = 20;
     [SerializeField] private Transform topBone, bottomBone;
+    Vector3 centre;
 
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 centre = Vector3.zero;
-        for (int i = 0; i < bones.Count; i++)
-        {
-            centre += bones[i].position;
-        }
-
+        centre = Vector3.zero;
         for (int i = 0; i < transform.childCount; i++)
         {
             bones.Add(transform.GetChild(i));
+            centre += bones[i].position;
+        }
+        centre /= transform.childCount;
+
+        float current_rotation = Vector3.SignedAngle(Vector3.up, topBone.position - bottomBone.position, Vector3.forward);
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
             neighbours.Add(new List<Transform>());
             distances.Add(new List<float>());
             joints.Add(new List<SpringJoint2D>());
             positions.Add(bones[i].position - centre);
+            angles_from_centre.Add(Vector3.SignedAngle(Vector3.up, bones[i].position - centre, Vector3.forward) - current_rotation);
             foreach (Rigidbody2D rb in bones[i].GetComponents<Rigidbody2D>())
             {
                 rigidbodies.Add(rb);
@@ -49,10 +55,10 @@ public class BonesFormation : MonoBehaviour
     void FixedUpdate()
     {
 
-        Vector3 centre = Vector3.zero;
+        centre = Vector3.zero;
         for (int i = 0; i < bones.Count; i++)
         {
-            centre += bones[i].localPosition;
+            centre += bones[i].position;
             for (int j = 0; j < joints[i].Count; j++)
             {
                 joints[i][j].distance = distances[i][j] * transform.localScale.x;
@@ -61,27 +67,65 @@ public class BonesFormation : MonoBehaviour
         centre /= bones.Count;
         for (int i = 0; i < bones.Count; i++)
         {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                bones[i].localPosition = centre + positions[i] + Vector3.left * 4;
-            }
-
             for (int j = 0; j < neighbours[i].Count; j++)
             {
                 Vector3 direction = neighbours[i][j].position - bones[i].position;
                 float distance = direction.magnitude;
-                float difference = distance - distances[i][j];
+                float difference = distance - distances[i][j] * transform.localScale.x;
                 rigidbodies[i].AddForce(difference * separation * direction.normalized);
             }
         }
 
 
-        // get rotation by calculating the angle between the top and bottom bones
+        // it'd be nice if we could correct by a small amount each frame, but that doesn't seem to work
         float current_rotation = Vector3.SignedAngle(Vector3.up, topBone.position - bottomBone.position, Vector3.forward);
+        if (Mathf.Abs(current_rotation) > 90)
+        {
+            ResetRotation(1);
+            ResetPositions();
+        }
+
+        current_rotation = Vector3.SignedAngle(Vector3.up, topBone.position - bottomBone.position, Vector3.forward);
+        //Vector3 dist = transform.position - centre;
+        //transform.Translate(-dist);
         for (int i = 0; i < bones.Count; i++)
         {
+            //bones[i].Translate(dist);
+            // rotate original position by the current rotation
+            //rigidbodies[i].MovePosition(Vector2.Lerp(bones[i].position, centre + positions[i], Time.fixedDeltaTime * correction_amount));
             rigidbodies[i].MoveRotation(rotations[i] + current_rotation);
             //bones[i].Rotate(Vector3.back, rotations[i] + current_rotation);
         }
+
+    }
+
+    public void ResetPositions()
+    {
+        for (int i = 0; i < bones.Count; i++)
+        {
+            bones[i].position = centre + positions[i] * transform.localScale.x;
+        }
+    }
+
+    private void ResetRotation(float percent)
+    {
+        float current_rotation = Vector3.SignedAngle(Vector3.up, topBone.position - bottomBone.position, Vector3.forward);
+
+        transform.RotateAround(centre, Vector3.forward, -current_rotation * percent);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(centre, .1f);
+
+        for (int i = 0; i < bones.Count; i++)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(positions[i] + centre, .1f);
+        }
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(centre, transform.position);
     }
 }

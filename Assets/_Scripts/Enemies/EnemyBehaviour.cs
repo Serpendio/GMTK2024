@@ -1,15 +1,14 @@
 using Pathfinding;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-[RequireComponent(typeof(Enemy),typeof(Seeker))]
+[RequireComponent(typeof(Seeker))]
 public class EnemyBehaviour : MonoBehaviour
 {
-    Enemy enemy;
+    [SerializeField] EnemyData Data;
     [Header("Pathfinding")]
     Transform target;
+    Vector3 idleTarget;
     public float pathUpdateSeconds = 0.5f;
     public float nextWaypointDistance = 3f;
 
@@ -24,24 +23,47 @@ public class EnemyBehaviour : MonoBehaviour
     bool isGrounded;
     Seeker seeker;
     [SerializeField] Rigidbody2D body;
+    bool isIdle = true;
+    int currentIdleTime = 0;
+
 
     private void Awake()
     {
-        enemy = GetComponent<Enemy>();
         seeker = GetComponent<Seeker>();
 
-        offsetX = enemy.Data.Size * transform.localScale.x  + groundCheckOffsetX;
-        offsetY = enemy.Data.Size * transform.localScale.x + groundCheckOffsetY;
+        offsetX = Data.Size * transform.localScale.x  + groundCheckOffsetX;
+        offsetY = Data.Size * transform.localScale.x + groundCheckOffsetY;
 
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
+        InvokeRepeating(nameof(UpdateIdleTime), 0f, 1);
+    }
+    void UpdateIdleTime()
+    {
+        if (currentIdleTime >= Data.IdleSeconds)
+            return;
+
+        currentIdleTime++;
+        if(currentIdleTime >= Data.IdleSeconds)
+        {
+            isIdle= true;
+        }
     }
     bool TargetInRange()
     {
-        target = Physics2D.OverlapCircleAll(body.position, this.enemy.Data.AwarenessRange)
+        target = Physics2D.OverlapCircleAll(body.position, Data.AwarenessRange)
             .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
+
         if(target==null)
             return false;
-        return body.position.Distance(target.transform.position.To2D()) < this.enemy.Data.AwarenessRange;
+
+        var check = body.position.Distance(target.transform.position.To2D()) < Data.AwarenessRange;
+        if (check)
+        {
+            isIdle = false;
+            currentIdleTime = 0;
+        }
+
+        return check;
     }
 
     bool IsGrounded()
@@ -50,18 +72,34 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (TargetInRange())
-        {
-            PathFollow();
-        }
+        PathFollow();
     }
     void UpdatePath()
     {
-        if (seeker.IsDone() && TargetInRange())
+        if (!seeker.IsDone())
+            return;
+
+        if (TargetInRange())
         {
             seeker.StartPath(body.position, target.position, OnPathComplete);
         }
+        else if(IdleTarget())
+        {
+            seeker.StartPath(body.position, idleTarget, OnPathComplete);
+        }
     }
+
+    private bool IdleTarget()
+    {
+        if (!this.isIdle)
+            return false;
+
+        this.idleTarget = body.position + new Vector2(Random.Range(-Data.IdleRange, Data.IdleRange),0);
+        isIdle= false;
+        currentIdleTime = 0;
+        return true;
+    }
+
     void OnPathComplete(Path path)
     {
         if (path.error)
@@ -86,9 +124,9 @@ public class EnemyBehaviour : MonoBehaviour
         bool isBLocked = body.position.IsBlocked(new Vector2(direction.x,-0.3f*Mathf.Abs(direction.x)).normalized,this.offsetX);
         if(this.isGrounded && isBLocked)
         {
-            body.AddForce(this.enemy.Data.JumpForce * Time.deltaTime * new Vector2(direction.x/10,1).normalized, ForceMode2D.Impulse);
+            body.AddForce(Data.JumpForce * Time.deltaTime * new Vector2(direction.x/10,1).normalized, ForceMode2D.Impulse);
         }
-        var force = this.enemy.Data.Speed * Time.deltaTime * direction;
+        var force = Data.Speed * Time.deltaTime * direction;
         body.AddForce(force);
 
         var distance = body.position.Distance(path.vectorPath[currentWaypoint]);
@@ -98,13 +136,13 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-
     private void OnDrawGizmos()
     {
-        if(enemy!= null)
-        {
-            Gizmos.DrawWireSphere(this.body.position, this.enemy.Data.AwarenessRange);
-        }
+        Gizmos.DrawWireSphere(this.body.position, Data.AwarenessRange);
+        Gizmos.DrawWireSphere(this.body.position, Data.IdleRange);
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(this.body.position, Data.Size * transform.localScale.x);
+
         Gizmos.color= Color.red;
         Gizmos.DrawLine(this.body.position, body.position + Vector2.right * offsetX);
         Gizmos.DrawLine(this.body.position, body.position + Vector2.left * offsetX);

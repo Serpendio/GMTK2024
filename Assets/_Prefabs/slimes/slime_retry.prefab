@@ -75,7 +75,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &4900566689007733812
 SpringJoint2D:
@@ -255,7 +255,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &5416169514721901674
 SpringJoint2D:
@@ -435,7 +435,7 @@ MonoBehaviour:
   moveForce: 50
   moveSpeed: 100
   canJump: 0
-  resources: {fileID: 5583616558158989864}
+  resources: {fileID: 5589665162726633208}
 --- !u!1 &2371519286245478572
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +511,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &7903371895257791413
 SpringJoint2D:
@@ -784,7 +784,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &59967697265392821
 SpringJoint2D:
@@ -959,7 +959,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &3299169281398952681
 SpringJoint2D:
@@ -1134,7 +1134,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &6112297480862731450
 SpringJoint2D:
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 8470069079720051865}
   - component: {fileID: 8228130908409518128}
   - component: {fileID: 17693006254082355}
-  - component: {fileID: 5583616558158989864}
+  - component: {fileID: 5589665162726633208}
   m_Layer: 0
   m_Name: slime_retry
   m_TagString: Untagged
@@ -1265,7 +1265,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.1962175, y: -1.2006559, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4525595078076638021}
   - {fileID: 2120713936177700185}
@@ -1366,13 +1366,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bba616b41c45fb45b48be554f8d916d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  separation: 150
-  rotation_correction: 100
-  correction_amount: 20
-  maxAngleOffset: 90
+  separation: 441.7
+  rotation_correction: 1000
+  correction_amount: 50
+  maxAngleOffset: 200
+  timePerCorrection: 10
   topBone: {fileID: 1989002756293060826}
   bottomBone: {fileID: 2150077455092181711}
---- !u!114 &5583616558158989864
+--- !u!114 &5589665162726633208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1381,17 +1382,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8318515130225472225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c1bfeabb04d6da45830118ee4892fed, type: 3}
+  m_Script: {fileID: 11500000, guid: 960d481dd1b8e0f459ca87852ed9f1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bigResourceValue: 3
+  smallResourceValue: 0.5
+  currentSizeValue: 1
+  scaleSpeed: 1
+  scaleOffset: 0
   bigResource: {fileID: 0}
   smallResource: {fileID: 0}
   currentSize: {fileID: 0}
   viewport: {fileID: 0}
-  bigResourceValue: 2
-  smallResourceValue: 0.4
-  currentSizeValue: 1
-  scaleSpeed: 1
 --- !u!1 &8899318286741378380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1469,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &6299067499042062503
 SpringJoint2D:

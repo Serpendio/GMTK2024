@@ -8,4 +8,6 @@ public class EnemyData : ScriptableObject
     public float Speed;
     public float JumpForce;
     public float AwarenessRange;
+    public float IdleRange;
+    public float IdleSeconds;
 }

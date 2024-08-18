@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlimeB
   m_EditorClassIdentifier: 
   Size: 2
-  Speed: 2000
-  JumpForce: 200
+  Speed: 2400
+  JumpForce: 300
   AwarenessRange: 15
   IdleRange: 7

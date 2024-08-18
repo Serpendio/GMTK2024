@@ -75,7 +75,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &4900566689007733812
 SpringJoint2D:
@@ -255,7 +255,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &5416169514721901674
 SpringJoint2D:
@@ -511,7 +511,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &7903371895257791413
 SpringJoint2D:
@@ -784,7 +784,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &59967697265392821
 SpringJoint2D:
@@ -959,7 +959,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &3299169281398952681
 SpringJoint2D:
@@ -1134,7 +1134,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &6112297480862731450
 SpringJoint2D:
@@ -1366,10 +1366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bba616b41c45fb45b48be554f8d916d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  separation: 150
-  rotation_correction: 100
-  correction_amount: 20
-  maxAngleOffset: 90
+  separation: 441.7
+  rotation_correction: 1000
+  correction_amount: 50
+  maxAngleOffset: 200
+  timePerCorrection: 10
   topBone: {fileID: 1989002756293060826}
   bottomBone: {fileID: 2150077455092181711}
 --- !u!114 &5583616558158989864
@@ -1467,7 +1468,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!231 &6299067499042062503
 SpringJoint2D:

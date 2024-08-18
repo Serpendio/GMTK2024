@@ -19,6 +19,14 @@ public static class Vector2Ext
         => Vector2.Distance(from, to);
     public static Vector3 To3D(this Vector2 vector, float? z = null)
         => new Vector3(vector.x, vector.y, (float)(z == null ? 0 : z));
+    public static Vector2 RandomDirection()
+        => Random.insideUnitCircle.normalized;
+    public static Vector2 RandomVector(float maxMagnitude, float minMagnitude = 0)
+    {
+        var factor = Random.Range(minMagnitude, maxMagnitude);
+
+        return factor * RandomDirection();
+    }
     public static bool IsBlocked(this Vector2 position, Vector2 direction, float offset)
         => Physics2D.RaycastAll(position, direction, offset)
         .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));

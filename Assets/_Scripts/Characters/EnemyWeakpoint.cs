@@ -53,5 +53,25 @@ public class EnemyWeakpoint : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+
+        if (selfTakeDamage)
+        {
+            transform.localScale -= takeDamageSpeed * Time.deltaTime * Vector3.one;
+            if (affectsBigResource)
+            {
+                self.AddBigResource(-takeDamageSpeed * Time.deltaTime * resourceMultiplier);
+                player.AddBigResource(takeDamageSpeed * Time.deltaTime * resourceMultiplier);
+            }
+            else
+            {
+                self.AddSmallResource(-takeDamageSpeed * Time.deltaTime * resourceMultiplier);
+                player.AddSmallResource(takeDamageSpeed * Time.deltaTime * resourceMultiplier);
+            }
+
+            if (transform.localScale.x < .4f)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &59671015 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2689091248549437812, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
+  m_PrefabInstance: {fileID: 530757946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &415511650
 GameObject:
   m_ObjectHideFlags: 0
@@ -4764,11 +4769,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8753411821427784915, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.1962175
+      value: -6.1
       objectReference: {fileID: 0}
     - target: {fileID: 8753411821427784915, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2006559
+      value: -16.37
       objectReference: {fileID: 0}
     - target: {fileID: 8753411821427784915, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4819,6 +4824,8 @@ GameObject:
   - component: {fileID: 577297621}
   - component: {fileID: 577297620}
   - component: {fileID: 577297623}
+  - component: {fileID: 577297625}
+  - component: {fileID: 577297624}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4944,6 +4951,49 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!50 &577297624
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577297619}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 8
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &577297625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577297619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f1963302b7f0f459c9fcc96f2083a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 59671015}
+  baseSize: 5
+  trackSpeed: 2
+  offset: {x: 0, y: 4, z: -10}
 --- !u!1 &642122906
 GameObject:
   m_ObjectHideFlags: 0

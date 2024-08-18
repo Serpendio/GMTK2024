@@ -1,15 +1,14 @@
 using Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyBehaviour : MonoBehaviour
 {
     Enemy enemy;
     [Header("Pathfinding")]
-    public Transform target;
+    Transform target;
     public float activateDistance = 50f;
     public float pathUpdateSeconds = 0.5f;
     public float nextWaypointDistance = 3f;
@@ -38,7 +37,14 @@ public class EnemyBehaviour : MonoBehaviour
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
     }
     bool TargetInRange()
-        => transform.Distance(target.transform) < this.activateDistance;
+    {
+        target = Physics2D.OverlapCircleAll((Vector2)transform.position, activateDistance)
+            .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
+        if(target==null)
+            return false;
+        return transform.Distance(target.transform) < this.activateDistance;
+    }
+
     private void FixedUpdate()
     {
         if (TargetInRange())
@@ -69,23 +75,20 @@ public class EnemyBehaviour : MonoBehaviour
             return;
 
         this.isGrounded = transform.position.IsGrounded(this.offset);
-        if(!this.isGrounded)
+        if (!this.isGrounded)
         {
-            Debug.Log($"isGrounded {isGrounded}", this);
+            return;
         }
         Vector2 direction = body.position.DirectionTo((Vector2)path.vectorPath[currentWaypoint]);
 
-        if(this.isGrounded)
-        {
-            if (direction.y > jumpThreshold)
-            {
-                Debug.Log($"jump", this);
-
-                body.AddForce(jumpForce * this.enemy.Data.Speed * Vector2.up, ForceMode2D.Impulse);
-            }
-        }
+        //if(this.isGrounded)
+        //{
+        //    if (direction.y > jumpThreshold)
+        //    {
+        //        body.AddForce(jumpForce * this.enemy.Data.Speed * Vector2.up, ForceMode2D.Impulse);
+        //    }
+        //}
         var force = this.enemy.Data.Speed * Time.deltaTime * direction;
-        Debug.Log($"add force{force}", this);
         body.AddForce(force);
 
         var distance = body.position.Distance(path.vectorPath[currentWaypoint]);

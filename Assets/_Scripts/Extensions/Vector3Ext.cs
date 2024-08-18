@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,7 +21,8 @@ public static class Vector3Ext
         => Vector3.Distance(from, to);
 
     public static bool IsGrounded(this Vector3 position, float offset)
-        => Physics2D.Raycast(position, Vector3.down, offset);
+        => Physics2D.RaycastAll(position, Vector3.down, offset)
+        .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));
     public static bool IsGrounded(this Vector3 position, Collider2D collider, float offset)
         => position.IsGrounded(collider.bounds.extents.y + offset);
 }

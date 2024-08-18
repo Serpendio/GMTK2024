@@ -14,9 +14,8 @@ public class EnemyBehaviour : MonoBehaviour
     public float nextWaypointDistance = 3f;
 
     [Header("Jump")]
-    public float jumpThreshold = 1f;
-    public float jumpOffsetX = 0.5f;
-    public float jumpOffsetY = 0.1f;
+    public float groundCheckOffsetX = 1f;
+    public float groundCheckOffsetY = 0.5f;
     float offsetX;
     float offsetY;
 
@@ -31,8 +30,8 @@ public class EnemyBehaviour : MonoBehaviour
         enemy = GetComponent<Enemy>();
         seeker = GetComponent<Seeker>();
 
-        offsetX = enemy.Data.Size + jumpOffsetX;
-        offsetY = enemy.Data.Size + jumpOffsetY;
+        offsetX = enemy.Data.Size * transform.localScale.x  + groundCheckOffsetX;
+        offsetY = enemy.Data.Size * transform.localScale.x + groundCheckOffsetY;
 
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
     }

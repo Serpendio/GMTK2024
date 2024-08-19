@@ -343,7 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 76d808a735704564993196d2ec9f3e15, type: 2}
   pathUpdateSeconds: 0.5
-  nextWaypointDistance: 3
+  nextWaypointDistance: 1
   groundCheckOffsetX: 1
   groundCheckOffsetY: 0.5
   body: {fileID: 4175047219749755059}

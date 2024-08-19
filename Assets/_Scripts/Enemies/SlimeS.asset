@@ -18,3 +18,4 @@ MonoBehaviour:
   AwarenessRange: 6
   IdleRange: 3
   IdleSeconds: 4
+  IdleSpeedFactor: 0.4

@@ -388,6 +388,7 @@ MonoBehaviour:
   giveDamageSpeed: 1
   takeDamageSpeed: 1
   resourceMultiplier: 0.5
+  separationForce: 10
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}
@@ -403,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1bfeabb04d6da45830118ee4892fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 6689133045933815069}
   bigResourceValue: 0
   smallResourceValue: 0
   currentSizeValue: 0.55
@@ -784,7 +786,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.6164036
+  m_Distance: 0.6164035
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!231 &2948091154217823671
@@ -1054,7 +1056,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.71729565
+  m_Distance: 0.71729594
   m_DampingRatio: 0
   m_Frequency: 1
 --- !u!1 &4929654714978011575
@@ -1518,7 +1520,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.88099587
+  m_Distance: 0.88099635
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!231 &4264294331919099530
@@ -1539,7 +1541,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.6164036
+  m_Distance: 0.6164035
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!231 &1011545852329832991
@@ -1560,7 +1562,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.71729565
+  m_Distance: 0.71729594
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!1 &7425142829232186666
@@ -1700,7 +1702,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.88099587
+  m_Distance: 0.88099635
   m_DampingRatio: 0.3
   m_Frequency: 3
 --- !u!231 &2451842238049111759
@@ -1993,6 +1995,7 @@ MonoBehaviour:
   giveDamageSpeed: 1
   takeDamageSpeed: 1
   resourceMultiplier: 0.5
+  separationForce: 10
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}

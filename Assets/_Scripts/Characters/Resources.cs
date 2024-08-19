@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 public class Resources : MonoBehaviour
 {
     BonesFormation bonesFormation;
+    public Rigidbody2D rb;
     public float bigResourceValue = 0, smallResourceValue = 0, currentSizeValue = 1;
     public float scaleSpeed = 1f;
     public float scaleOffset;

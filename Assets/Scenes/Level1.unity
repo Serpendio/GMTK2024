@@ -324,6 +324,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5082685452589884422, guid: 227c6029569e68f46be3ba0d8756899f, type: 3}
+      propertyPath: m_Distance
+      value: 0.88099587
+      objectReference: {fileID: 0}
     - target: {fileID: 5235588064851975486, guid: 227c6029569e68f46be3ba0d8756899f, type: 3}
       propertyPath: m_Distance
       value: 0.5696377
@@ -355,6 +359,10 @@ PrefabInstance:
     - target: {fileID: 8219234823591287556, guid: 227c6029569e68f46be3ba0d8756899f, type: 3}
       propertyPath: m_Distance
       value: 0.4484746
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408117186638575239, guid: 227c6029569e68f46be3ba0d8756899f, type: 3}
+      propertyPath: m_Distance
+      value: 0.88099587
       objectReference: {fileID: 0}
     - target: {fileID: 8565054897097491887, guid: 227c6029569e68f46be3ba0d8756899f, type: 3}
       propertyPath: m_Distance
@@ -6008,7 +6016,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:

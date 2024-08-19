@@ -1385,6 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960d481dd1b8e0f459ca87852ed9f1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 3940187977350883182}
   bigResourceValue: 3
   smallResourceValue: 0.5
   currentSizeValue: 1

@@ -9,7 +9,7 @@ public class WeakpointSegment : MonoBehaviour
 
     private void Awake()
     {
-        parentWeakpoint = GetComponentInParent<EnemyWeakpoint>();
+        parentWeakpoint = transform.parent.GetComponentInParent<EnemyWeakpoint>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

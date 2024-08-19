@@ -94,8 +94,8 @@ public class EnemyBehaviour : MonoBehaviour
         if (!this.isIdle)
             return false;
 
-        var idleRange = Data.IdleRange * transform.localScale.x;
-        this.idleTarget = body.position + new Vector2((Random.Range(Data.Size, idleRange) * Random.Range(0, 2) * 2 - 1),0);
+        var idleDistance = Random.Range(Data.Size + Data.IdleRange/3, Data.IdleRange)  * transform.localScale.x;
+        this.idleTarget = body.position + new Vector2(idleDistance * (Random.Range(0, 2) * 2 - 1),0);
         isIdle= false;
         currentIdleTime = 0;
         return true;
@@ -128,6 +128,10 @@ public class EnemyBehaviour : MonoBehaviour
             body.AddForce(Data.JumpForce * Time.deltaTime * new Vector2(direction.x/10,1).normalized, ForceMode2D.Impulse);
         }
         var force = Data.Speed * Time.deltaTime * direction;
+        if (target == null)
+        {
+            force /= 2;
+        }
         body.AddForce(force);
 
         var distance = body.position.Distance(path.vectorPath[currentWaypoint]);

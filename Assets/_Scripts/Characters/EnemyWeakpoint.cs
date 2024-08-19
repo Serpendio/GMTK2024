@@ -14,6 +14,8 @@ public class EnemyWeakpoint : MonoBehaviour
     public int numCorrect = 0;
     public Resources player;
     private Resources self;
+    bool shouldPlayPrimeHitSFX = true;
+    bool shouldPlayHitSFX = true;
 
     void Awake()
     {
@@ -52,6 +54,12 @@ public class EnemyWeakpoint : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
+            else if (shouldPlayPrimeHitSFX)
+            {
+                StartCoroutine(Cr_SFXPrimeHitCheck());
+                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.primeSlimeHit);
+            }
+
         }
 
         if (selfTakeDamage)
@@ -70,8 +78,28 @@ public class EnemyWeakpoint : MonoBehaviour
 
             if (transform.localScale.x < .4f)
             {
+                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeSquash);
                 Destroy(gameObject);
             }
+            else if (shouldPlayHitSFX)
+            {
+                StartCoroutine(Cr_SFXHitCheck());
+                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeHit);
+            }
         }
+    }
+    IEnumerator Cr_SFXPrimeHitCheck()
+    {
+        shouldPlayPrimeHitSFX= false;
+    
+        yield return new WaitForSecondsRealtime(0.3f);
+        shouldPlayPrimeHitSFX= true;
+    }
+    IEnumerator Cr_SFXHitCheck()
+    {
+        shouldPlayHitSFX = false;
+    
+        yield return new WaitForSecondsRealtime(0.3f);
+        shouldPlayHitSFX = true;
     }
 }

@@ -50,13 +50,13 @@ public class EnemyBehaviour : MonoBehaviour
     }
     bool TargetInRange()
     {
-        target = Physics2D.OverlapCircleAll(body.position, Data.AwarenessRange)
+        target = Physics2D.OverlapCircleAll(body.position, Data.AwarenessRange * transform.localScale.x)
             .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
 
         if(target==null)
             return false;
 
-        var check = body.position.Distance(target.transform.position.To2D()) < Data.AwarenessRange;
+        var check = body.position.Distance(target.transform.position.To2D()) < Data.AwarenessRange * transform.localScale.x;
         if (check)
         {
             isIdle = false;
@@ -94,7 +94,8 @@ public class EnemyBehaviour : MonoBehaviour
         if (!this.isIdle)
             return false;
 
-        this.idleTarget = body.position + new Vector2(Random.Range(-Data.IdleRange, Data.IdleRange),0);
+        var idleRange = Data.IdleRange * transform.localScale.x;
+        this.idleTarget = body.position + new Vector2(Random.Range(-idleRange, idleRange),0);
         isIdle= false;
         currentIdleTime = 0;
         return true;
@@ -138,8 +139,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(this.body.position, Data.AwarenessRange);
-        Gizmos.DrawWireSphere(this.body.position, Data.IdleRange);
+        Gizmos.DrawWireSphere(this.body.position, Data.AwarenessRange * transform.localScale.x);
+        Gizmos.DrawWireSphere(this.body.position, Data.IdleRange * transform.localScale.x);
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(this.body.position, Data.Size * transform.localScale.x);
 

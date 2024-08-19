@@ -18,11 +18,13 @@ public class MainMenu : MonoBehaviour
     }
     public void StartGame()
     {
+        AudioSingle.Instance.PlaySFX(AudioSingle.Instance.primeSlimeSquash);
         mainMenu.SetActive(false);
         LoadLevel.SetActive(true);
     }
     public void LoadLever(int nub)
     {
+        AudioSingle.Instance.PlaySFX(AudioSingle.Instance.primeSlimeSquash);
         SceneManager.LoadScene(nub);
     }
     public void Settings()

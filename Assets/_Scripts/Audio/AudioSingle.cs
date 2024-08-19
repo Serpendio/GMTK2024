@@ -8,7 +8,7 @@ public class AudioSingle : _Singleton<AudioSingle>
 {
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SVXSource;
+    [SerializeField] AudioSource SFXSource;
     [SerializeField] [Range(0, 1)]
     private float _masterVolume = 1;
     public float MasterVolume
@@ -43,6 +43,9 @@ public class AudioSingle : _Singleton<AudioSingle>
             SetSFXVolume(_sfxVolume);
         }
     }
+    [field: SerializeField] public AudioClip slimeHit { get; private set; }
+    [field: SerializeField] public AudioClip primeSlimeHit { get; private set; }
+    [field: SerializeField] public AudioClip primeSlimeSquash { get; private set; }
     private void Start()
     {
         SetMasterVolume(MasterVolume);
@@ -71,10 +74,15 @@ public class AudioSingle : _Singleton<AudioSingle>
     {
         audioMixer.SetFloat("SFX_Volume", value == 0 ? 0.0001f : Mathf.Log10(value) * 20);
     }
-
-    public void PlaySFX(AudioClip clip, Vector3 position, float volume)
+    public void PlaySFX(AudioClip clip, float volume = 1)
     {
-        AudioSource audioSource = Instantiate(SVXSource, position, Quaternion.identity);
+        SFXSource.clip = clip;
+        SFXSource.volume = volume;
+        SFXSource.Play();
+    }
+    public void PlaySFX(AudioClip clip, Vector3 position, float volume = 1)
+    {
+        AudioSource audioSource = Instantiate(SFXSource, position, Quaternion.identity);
         audioSource.clip= clip;
         audioSource.volume= volume;
         audioSource.Play();

@@ -19,7 +19,7 @@ public class Resources : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        transform.localScale = Vector3.one * currentSizeValue;
+        transform.localScale = Vector3.one * (currentSizeValue - scaleOffset);
     }
 
     public virtual void TryGrow()
@@ -29,7 +29,7 @@ public class Resources : MonoBehaviour
         {
             currentSizeValue = bigResourceValue;
         }
-        transform.localScale = new Vector3(currentSizeValue - scaleOffset, currentSizeValue - scaleOffset, currentSizeValue - scaleOffset);
+        transform.localScale = Vector3.one * (currentSizeValue - scaleOffset);
         bonesFormation.ResetPositions();
     }
 

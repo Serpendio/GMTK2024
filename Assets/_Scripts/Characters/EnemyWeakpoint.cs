@@ -55,6 +55,9 @@ public class EnemyWeakpoint : MonoBehaviour
             if (player.transform.localScale.x < .4f)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.primeSlimeHit);
+                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeSquash, Vector3.zero);
             }
             else if (shouldPlayPrimeHitSFX)
             {
@@ -81,13 +84,13 @@ public class EnemyWeakpoint : MonoBehaviour
 
             if (transform.localScale.x < .4f)
             {
-                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeSquash);
+                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeSquash, self.rb.position);
                 Destroy(gameObject);
             }
             else if (shouldPlayHitSFX)
             {
                 StartCoroutine(Cr_SFXHitCheck());
-                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeHit);
+                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeHit, self.rb.position);
             }
         }
     }

@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 public class Resources : MonoBehaviour
 {
     BonesFormation bonesFormation;
+    public Rigidbody2D rb;
     public float bigResourceValue = 0, smallResourceValue = 0, currentSizeValue = 1;
     public float scaleSpeed = 1f;
     public float scaleOffset;
@@ -19,7 +20,7 @@ public class Resources : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        transform.localScale = Vector3.one * currentSizeValue;
+        transform.localScale = Vector3.one * (currentSizeValue - scaleOffset);
     }
 
     public virtual void TryGrow()
@@ -29,7 +30,7 @@ public class Resources : MonoBehaviour
         {
             currentSizeValue = bigResourceValue;
         }
-        transform.localScale = new Vector3(currentSizeValue - scaleOffset, currentSizeValue - scaleOffset, currentSizeValue - scaleOffset);
+        transform.localScale = Vector3.one * (currentSizeValue - scaleOffset);
         bonesFormation.ResetPositions();
     }
 

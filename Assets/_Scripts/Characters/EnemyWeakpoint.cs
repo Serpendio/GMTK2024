@@ -10,6 +10,7 @@ public class EnemyWeakpoint : MonoBehaviour
     public float giveDamageSpeed = 1f;
     public float takeDamageSpeed = 1f;
     public float resourceMultiplier = 0.5f;
+    public float separationForce = 10f;
     public int numIncorrect = 0;
     public int numCorrect = 0;
     public Resources player;
@@ -40,7 +41,8 @@ public class EnemyWeakpoint : MonoBehaviour
 
         if (playerTakeDamage)
         {
-            player.transform.localScale -=  giveDamageSpeed * Time.deltaTime * Vector3.one;
+            player.rb.AddForce((player.transform.position - transform.position).normalized * separationForce);
+            player.transform.localScale -= giveDamageSpeed * Time.deltaTime * Vector3.one;
             if (affectsBigResource)
             {
                 player.AddBigResource(-giveDamageSpeed * Time.deltaTime * resourceMultiplier);
@@ -64,6 +66,7 @@ public class EnemyWeakpoint : MonoBehaviour
 
         if (selfTakeDamage)
         {
+            self.rb.AddForce((transform.position - player.transform.position).normalized * separationForce);
             transform.localScale -= takeDamageSpeed * Time.deltaTime * Vector3.one;
             if (affectsBigResource)
             {

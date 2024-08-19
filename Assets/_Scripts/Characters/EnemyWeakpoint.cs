@@ -15,12 +15,26 @@ public class EnemyWeakpoint : MonoBehaviour
     public int numCorrect = 0;
     public Resources player;
     private Resources self;
+    AudioSingle audioSingle;
     bool shouldPlayPrimeHitSFX = true;
     bool shouldPlayHitSFX = true;
 
     void Awake()
     {
         self = GetComponent<Resources>();
+        Init();
+    }
+    private void OnValidate()
+    {
+        Init();
+    }
+    private void Init()
+    {
+        audioSingle = AudioSingle.Instance;
+        if (audioSingle == null)
+        {
+            Debug.LogWarning("missing AudioSingle instance!", this);
+        }
     }
 
     // Update is called once per frame
@@ -56,13 +70,13 @@ public class EnemyWeakpoint : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.primeSlimeHit);
-                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeSquash, Vector3.zero);
+                audioSingle?.PlaySFX(audioSingle?.primeSlimeHit);
+                audioSingle?.PlaySFX(audioSingle?.slimeSquash, Vector3.zero);
             }
             else if (shouldPlayPrimeHitSFX)
             {
                 StartCoroutine(Cr_SFXPrimeHitCheck());
-                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.primeSlimeHit);
+                audioSingle?.PlaySFX(audioSingle?.primeSlimeHit);
             }
 
         }
@@ -84,13 +98,13 @@ public class EnemyWeakpoint : MonoBehaviour
 
             if (transform.localScale.x < .4f)
             {
-                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeSquash, self.rb.position);
+                audioSingle?.PlaySFX(audioSingle?.slimeSquash, self.rb.position);
                 Destroy(gameObject);
             }
             else if (shouldPlayHitSFX)
             {
                 StartCoroutine(Cr_SFXHitCheck());
-                AudioSingle.Instance.PlaySFX(AudioSingle.Instance.slimeHit, self.rb.position);
+                audioSingle?.PlaySFX(audioSingle?.slimeHit, self.rb.position);
             }
         }
     }

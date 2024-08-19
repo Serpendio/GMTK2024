@@ -43,10 +43,8 @@ public class AudioSingle : _Singleton<AudioSingle>
             SetSFXVolume(_sfxVolume);
         }
     }
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-
         SetMasterVolume(MasterVolume);
         SetMusicVolume(MusicVolume);
         SetSFXVolume(SFXVolume);

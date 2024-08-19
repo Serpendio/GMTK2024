@@ -10,7 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     Transform target;
     Vector3 idleTarget;
     public float pathUpdateSeconds = 0.5f;
-    public float nextWaypointDistance = 3f;
+    public float nextWaypointDistance = 1f;
 
     [Header("Jump")]
     public float groundCheckOffsetX = 1f;
@@ -95,7 +95,7 @@ public class EnemyBehaviour : MonoBehaviour
             return false;
 
         var idleRange = Data.IdleRange * transform.localScale.x;
-        this.idleTarget = body.position + new Vector2(Random.Range(-idleRange, idleRange),0);
+        this.idleTarget = body.position + new Vector2((Random.Range(Data.Size, idleRange) * Random.Range(0, 2) * 2 - 1),0);
         isIdle= false;
         currentIdleTime = 0;
         return true;

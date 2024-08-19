@@ -49,10 +49,13 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   audioMixer: {fileID: 24100000, guid: e899ba2eb011ce343896eb5e8ad6526f, type: 2}
   musicSource: {fileID: 2460391067620487091}
-  SVXSource: {fileID: 3820627252051884591}
+  SFXSource: {fileID: 3820627252051884591}
   _masterVolume: 0.5
   _musicVolume: 1
   _sfxVolume: 1
+  <slimeHit>k__BackingField: {fileID: 8300000, guid: e96c04c3a5a1889469eefd94f8b52358, type: 3}
+  <primeSlimeHit>k__BackingField: {fileID: 8300000, guid: 998f4f92a323fe142830bea226a885ce, type: 3}
+  <primeSlimeSquash>k__BackingField: {fileID: 8300000, guid: 96bf80b1c8121a5489edeee07c46a878, type: 3}
 --- !u!82 &2460391067620487091
 AudioSource:
   m_ObjectHideFlags: 0

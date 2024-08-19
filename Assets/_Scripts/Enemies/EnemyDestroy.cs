@@ -7,13 +7,19 @@ public class EnemyDestroy : MonoBehaviour
     private void Awake()
     {
         EnemyHander enemyHander = FindAnyObjectByType<EnemyHander>();
-        enemyHander.NubOFEnemys++;
+        if (enemyHander != null)
+        {
+            enemyHander.NubOFEnemys++;
+        }
     }
 
     private void OnDestroy()
     {
         EnemyHander enemyHander = FindAnyObjectByType<EnemyHander>();
-        enemyHander.NubOFEnemys--;
+        if (enemyHander != null)
+        {
+            enemyHander.NubOFEnemys--;
+        }
     }
 
 }

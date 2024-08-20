@@ -9,7 +9,7 @@ public class PlayerResources : Resources
     public TextMeshProUGUI bigResource, smallResource, currentSize;
     public Slider bigResourceSlider, smallResourceSlider, HealthSlider;
     public Viewport viewport;
-
+    
     protected override void Start()
     {
         base.Start();

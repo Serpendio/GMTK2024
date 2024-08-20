@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2fc42b69e03f6714e9a3785bb6f54bb9
+guid: e043ad06ea6897b49a4c1b9e45ec7ac6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,49 +97,112 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bars_0
+      name: Gui_bar_v3_or_5_or_something_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 76
-        width: 57
-        height: 22
+        x: 5
+        y: 69
+        width: 35
+        height: 2
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d32f42e62d512fd4b9651a622cd46a77
-      internalID: -2128238074
+      spriteID: ea3043f514dfeba4fad076a91171dd1b
+      internalID: 1972609445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bars_1
+      name: Gui_bar_v3_or_5_or_something_1
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 56
+        width: 35
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d66bc6dcceda9c4b996cb2a6ef7f263
+      internalID: 1095243605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gui_bar_v3_or_5_or_something_2
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 41
+        width: 35
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e04599e5259f454aa98290b9e9f288d
+      internalID: -1437243194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gui_bar_v3_or_5_or_something_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 9
+        width: 75
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e8e149a5a476643bd5d29575ecd079
+      internalID: -1130366086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gui_bar_v3_or_5_or_something_4
       rect:
         serializedVersion: 2
         x: 62
-        y: 91
+        y: 52
         width: 37
-        height: 8
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92b8ce889aa7bf84eaba27627f740672
-      internalID: -1758766387
+      spriteID: fd9649a84a5b75b498b3a1e98d259d96
+      internalID: 502492610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bars_2
+      name: Gui_bar_v3_or_5_or_something_5
       rect:
         serializedVersion: 2
         x: 62
@@ -147,35 +210,14 @@ TextureImporter:
         width: 37
         height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcb211eb9c2d240499f9afe25103b961
-      internalID: 1872545918
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bars_3
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 52
-        width: 37
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fb0de3e712a1f8c40aa4d4836d838cb4
-      internalID: -166937324
+      spriteID: e0e3bdd473f351c4d8c8a441f9b5d37c
+      internalID: -153801441
       vertices: []
       indices: 
       edges: []
@@ -191,10 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bars_0: -2128238074
-      Bars_1: -1758766387
-      Bars_2: 1872545918
-      Bars_3: -166937324
+      Gui_bar_v3_or_5_or_something_0: 1972609445
+      Gui_bar_v3_or_5_or_something_1: 1095243605
+      Gui_bar_v3_or_5_or_something_2: -1437243194
+      Gui_bar_v3_or_5_or_something_3: -1130366086
+      Gui_bar_v3_or_5_or_something_4: 502492610
+      Gui_bar_v3_or_5_or_something_5: -153801441
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

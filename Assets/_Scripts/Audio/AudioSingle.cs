@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class AudioSingle : _Singleton<AudioSingle>
 {
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource SFXPrefab;
     [SerializeField] [Range(0, 1)]
     private float _masterVolume = 1;
     public float MasterVolume
@@ -88,7 +86,7 @@ public class AudioSingle : _Singleton<AudioSingle>
     /// </summary>
     public void PlaySFX(AudioClip clip, Vector3 position, float volume = 1)
     {
-        AudioSource audioSource = Instantiate(SFXSource, position, Quaternion.identity);
+        AudioSource audioSource = Instantiate(SFXPrefab, position, Quaternion.identity);
         audioSource.clip= clip;
         audioSource.volume= volume;
         audioSource.Play();

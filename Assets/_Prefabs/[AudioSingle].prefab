@@ -50,6 +50,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: e899ba2eb011ce343896eb5e8ad6526f, type: 2}
   musicSource: {fileID: 2460391067620487091}
   SFXSource: {fileID: 3820627252051884591}
+  SFXPrefab: {fileID: 1355892277088887743, guid: c23db138d790f7d42a9041a1ab035e47, type: 3}
   _masterVolume: 0.5
   _musicVolume: 1
   _sfxVolume: 1

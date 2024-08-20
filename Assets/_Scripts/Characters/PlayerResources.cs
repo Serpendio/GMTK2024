@@ -7,6 +7,7 @@ public class PlayerResources : Resources
 {
     public TextMeshProUGUI bigResource, smallResource, currentSize;
     public Viewport viewport;
+    bool shouldGrow = true;
 
     protected override void Start()
     {
@@ -22,6 +23,11 @@ public class PlayerResources : Resources
     // Update is called once per frame
     void Update()
     {
+        if (!shouldGrow)
+            return;
+
+        StartCoroutine(Cr_GrowCheck());
+
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             TryGrow();
@@ -31,6 +37,7 @@ public class PlayerResources : Resources
             TryShrink();
         }
     }
+
 
     public override void TryGrow()
     {
@@ -68,5 +75,13 @@ public class PlayerResources : Resources
 
         if (smallResource != null)
             smallResource.text = smallResourceValue.ToString();
+    }
+
+    IEnumerator Cr_GrowCheck()
+    {
+        shouldGrow = false;
+
+        yield return new WaitForSeconds(Time.fixedDeltaTime * 2);
+        shouldGrow = true;
     }
 }

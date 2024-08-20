@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 6509194152966701090}
   - component: {fileID: 17368931120967474}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,9 +341,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 22
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 22
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

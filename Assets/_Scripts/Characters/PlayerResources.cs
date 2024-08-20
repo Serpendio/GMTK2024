@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerResources : Resources
 {
     public TextMeshProUGUI bigResource, smallResource, currentSize;
+    public Slider bigResourceSlider, smallResourceSlider, HealthSlider;
     public Viewport viewport;
 
     protected override void Start()
@@ -17,6 +19,15 @@ public class PlayerResources : Resources
             smallResource.text = smallResourceValue.ToString();
         if (currentSize != null)
             currentSize.text = currentSizeValue.ToString();
+
+        if (bigResourceSlider != null)
+        {
+            bigResourceSlider.value = bigResourceValue;
+        }
+        if (smallResourceSlider != null)
+        {
+            smallResourceSlider.value = smallResourceValue;
+        }
     }
 
     // Update is called once per frame
@@ -30,6 +41,14 @@ public class PlayerResources : Resources
         {
             TryShrink();
         }
+        if (bigResourceSlider != null)
+        {
+            bigResourceSlider.value = bigResourceValue;
+        }
+        if (smallResourceSlider != null)
+        {
+            smallResourceSlider.value = smallResourceValue;
+        }
     }
 
     public override void TryGrow()
@@ -41,11 +60,14 @@ public class PlayerResources : Resources
         }
         if (viewport != null)
             viewport.UpdateScale(currentSizeValue);
+
     }
 
     public override void TryShrink()
     {
         base.TryShrink();
+        
+
         if (currentSize != null)
         {
             currentSize.text = currentSizeValue.ToString();
@@ -58,6 +80,7 @@ public class PlayerResources : Resources
     {
         base.AddBigResource(value);
 
+        
         if (bigResource != null)
             bigResource.text = bigResourceValue.ToString();
     }
@@ -66,6 +89,7 @@ public class PlayerResources : Resources
     {
         base.AddSmallResource(value);
 
+        
         if (smallResource != null)
             smallResource.text = smallResourceValue.ToString();
     }

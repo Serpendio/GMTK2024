@@ -22,6 +22,9 @@ public class EnemyWeakpoint : MonoBehaviour
     void Awake()
     {
         self = GetComponent<Resources>();
+    }
+    private void Start()
+    {
         audioSingle = AudioSingle.Instance;
         if (audioSingle == null)
         {

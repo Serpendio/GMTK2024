@@ -19,7 +19,7 @@ public class Viewport : MonoBehaviour
         UpdateScale(1);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         rb.AddForce((target.position - transform.position + offset) * trackSpeed);
     }

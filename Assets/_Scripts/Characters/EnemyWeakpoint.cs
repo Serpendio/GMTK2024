@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,8 +17,13 @@ public class EnemyWeakpoint : MonoBehaviour
     public Resources player;
     private Resources self;
     AudioSingle audioSingle;
+    bool playerTakeDamage = false;
+    bool selfTakeDamage = false;
+    [SerializeField] float forceDelay = 1;
     bool shouldPlayPrimeHitSFX = true;
     bool shouldPlayHitSFX = true;
+    bool shouldApplyForce = true;
+
 
     void Awake()
     {
@@ -35,8 +41,6 @@ public class EnemyWeakpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool playerTakeDamage = false;
-        bool selfTakeDamage = false;
         if (numCorrect > 0)
         {
             selfTakeDamage = (playerShouldBeBigger && player.transform.localScale.x > transform.localScale.x)
@@ -50,7 +54,6 @@ public class EnemyWeakpoint : MonoBehaviour
 
         if (playerTakeDamage)
         {
-            player.rb.AddForce((player.transform.position - transform.position).normalized * separationForce);
             player.transform.localScale -= giveDamageSpeed * Time.deltaTime * Vector3.one;
             if (affectsBigResource)
             {
@@ -78,7 +81,6 @@ public class EnemyWeakpoint : MonoBehaviour
 
         if (selfTakeDamage)
         {
-            self.rb.AddForce((transform.position - player.transform.position).normalized * separationForce);
             transform.localScale -= takeDamageSpeed * Time.deltaTime * Vector3.one;
             if (affectsBigResource)
             {
@@ -103,6 +105,31 @@ public class EnemyWeakpoint : MonoBehaviour
             }
         }
     }
+    private void FixedUpdate()
+    {
+
+        if(!(playerTakeDamage || selfTakeDamage))
+            return;
+        if (!shouldApplyForce)
+        {
+            playerTakeDamage = false;
+            selfTakeDamage = false;
+            return;
+        }
+
+        StartCoroutine(Cr_ApplyForceCheck());
+
+        if (playerTakeDamage || selfTakeDamage)
+        {
+            player.rb.AddForce(self.rb.position.DirectionTo(player.rb.position) * separationForce * Time.deltaTime, ForceMode2D.Impulse);
+            playerTakeDamage = false;
+        }
+        if (selfTakeDamage)
+        {
+            self.rb.AddForce(player.rb.position.DirectionTo(self.rb.position) * separationForce * Time.deltaTime, ForceMode2D.Impulse);
+            selfTakeDamage = false;
+        }
+    }
     IEnumerator Cr_SFXPrimeHitCheck()
     {
         shouldPlayPrimeHitSFX= false;
@@ -116,5 +143,20 @@ public class EnemyWeakpoint : MonoBehaviour
     
         yield return new WaitForSecondsRealtime(0.3f);
         shouldPlayHitSFX = true;
+    }
+    IEnumerator Cr_ApplyForceCheck()
+    {
+        shouldApplyForce = false;
+
+        yield return new WaitForSeconds(1f);
+        shouldApplyForce = true;
+    }
+    private void OnDrawGizmos()
+    {
+        if(player != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(self.rb.position, player.rb.position);
+        }
     }
 }

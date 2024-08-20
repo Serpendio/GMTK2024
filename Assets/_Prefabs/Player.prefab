@@ -223,6 +223,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6830154990562036789}
     m_Modifications:
+    - target: {fileID: 5589665162726633208, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
+      propertyPath: viewport
+      value: 
+      objectReference: {fileID: 6573763418118729066}
     - target: {fileID: 8318515130225472225, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: m_Name
       value: slime_retry

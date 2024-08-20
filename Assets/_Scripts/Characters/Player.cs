@@ -10,13 +10,17 @@ public class Player : MonoBehaviour
     public int canJump = 0;
     Rigidbody2D rb;
     [SerializeField] Resources resources;
+    AudioSingle audioSingle;
 
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
+    private void Start()
+    {
+        audioSingle = AudioSingle.Instance;
+    }
     private void Update()
     {
         float speedFactor;
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, maxJump);
             }
+            audioSingle?.PlaySFX(audioSingle.slimeHit);
         }
         moveAmount = Input.GetAxis("Horizontal") * speedFactor;
     }

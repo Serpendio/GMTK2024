@@ -15,7 +15,7 @@ public static class Vector2Ext
             (float)(x == null ? original.x : x),
             (float)(y == null ? original.y : y)
             );
-    public static double Distance(this Vector2 from, Vector2 to)
+    public static float Distance(this Vector2 from, Vector2 to)
         => Vector2.Distance(from, to);
     public static Vector3 To3D(this Vector2 vector, float? z = null)
         => new Vector3(vector.x, vector.y, (float)(z == null ? 0 : z));

@@ -388,10 +388,11 @@ MonoBehaviour:
   giveDamageSpeed: 1
   takeDamageSpeed: 1
   resourceMultiplier: 0.5
-  separationForce: 10
+  separationForce: 5000
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}
+  forceDelay: 1
 --- !u!114 &5127555511406431310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +477,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 39cddfc5d4b3060469cd8e32e31b22a1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -722,7 +723,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 39cddfc5d4b3060469cd8e32e31b22a1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -889,7 +890,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 39cddfc5d4b3060469cd8e32e31b22a1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1037,7 +1038,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.697178
+  m_Distance: 0.69717807
   m_DampingRatio: 0
   m_Frequency: 1
 --- !u!231 &2430085622354667142
@@ -5911,7 +5912,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 39cddfc5d4b3060469cd8e32e31b22a1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6255,7 +6256,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 39cddfc5d4b3060469cd8e32e31b22a1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6416,7 +6417,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 39cddfc5d4b3060469cd8e32e31b22a1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6577,7 +6578,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 39cddfc5d4b3060469cd8e32e31b22a1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6798,3 +6799,4 @@ MonoBehaviour:
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}
+  forceDelay: 1

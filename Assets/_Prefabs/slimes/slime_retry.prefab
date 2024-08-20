@@ -66,7 +66,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3e1d993f1067a73458bbab0dbe9d9791, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -248,7 +248,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3e1d993f1067a73458bbab0dbe9d9791, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4e954650808964496920200d1d0fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 40
+  jumpForce: 30
   maxJump: 100
   moveForce: 50
   moveSpeed: 100
@@ -5301,7 +5301,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3e1d993f1067a73458bbab0dbe9d9791, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5574,7 +5574,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3e1d993f1067a73458bbab0dbe9d9791, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5749,7 +5749,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3e1d993f1067a73458bbab0dbe9d9791, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5924,7 +5924,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3e1d993f1067a73458bbab0dbe9d9791, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6260,7 +6260,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3e1d993f1067a73458bbab0dbe9d9791, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

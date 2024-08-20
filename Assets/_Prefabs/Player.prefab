@@ -231,6 +231,10 @@ PrefabInstance:
       propertyPath: scaleSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7479823262435180212, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
+      propertyPath: jumpForce
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 8318515130225472225, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: m_Name
       value: slime_retry

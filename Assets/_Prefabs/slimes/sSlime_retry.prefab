@@ -6799,4 +6799,4 @@ MonoBehaviour:
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}
-  forceDelay: 1
+  DeathVFX: {fileID: 0}

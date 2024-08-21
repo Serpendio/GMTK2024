@@ -19,7 +19,6 @@ public class EnemyWeakpoint : MonoBehaviour
     AudioSingle audioSingle;
     bool playerTakeDamage = false;
     bool selfTakeDamage = false;
-    [SerializeField] float forceDelay = 1;
     bool shouldPlayPrimeHitSFX = true;
     bool shouldPlayHitSFX = true;
     bool shouldApplyForce = true;
@@ -96,19 +95,23 @@ public class EnemyWeakpoint : MonoBehaviour
         if (selfTakeDamage)
         {
             var damage = takeDamageSpeed * 1 / sizeFactor * Time.deltaTime;
-            transform.localScale -= damage * Vector3.one;
+            bool shouldDie;
             if (affectsBigResource)
             {
+                transform.localScale -= damage * Vector3.one;
                 self.AddBigResource(-damage * resourceMultiplier);
                 player.AddBigResource(damage * resourceMultiplier);
+                shouldDie = transform.localScale.x < .4f;
             }
             else
             {
+                transform.localScale += damage * Vector3.one;
                 self.AddSmallResource(-damage * resourceMultiplier);
                 player.AddSmallResource(damage * resourceMultiplier);
+                shouldDie = transform.localScale.x > 2.1f;
             }
 
-            if (transform.localScale.x < .4f)
+            if (shouldDie)
             {
                 audioSingle?.PlaySFX(audioSingle?.slimeSquash, self.rb.position);
                 Destroy(gameObject);
@@ -122,7 +125,6 @@ public class EnemyWeakpoint : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
         if(!(playerTakeDamage || selfTakeDamage))
             return;
         if (!shouldApplyForce)

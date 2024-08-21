@@ -23,6 +23,7 @@ public class EnemyWeakpoint : MonoBehaviour
     bool shouldPlayHitSFX = true;
     bool shouldApplyForce = true;
     float sizeFactor = 1;
+    [SerializeField] GameObject DeathVFX;
 
 
     void Awake()
@@ -114,6 +115,7 @@ public class EnemyWeakpoint : MonoBehaviour
             if (shouldDie)
             {
                 audioSingle?.PlaySFX(audioSingle?.slimeSquash, self.rb.position);
+                Instantiate(this.DeathVFX, self.rb.position, self.rb.transform.rotation);
                 Destroy(gameObject);
             }
             else if (shouldPlayHitSFX)

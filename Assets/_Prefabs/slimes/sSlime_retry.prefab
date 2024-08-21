@@ -392,7 +392,7 @@ MonoBehaviour:
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}
-  forceDelay: 1
+  DeathVFX: {fileID: 6641698559496121866, guid: 2d7b6b50d5874904d8092d96c3d5bf45, type: 3}
 --- !u!114 &5127555511406431310
 MonoBehaviour:
   m_ObjectHideFlags: 0

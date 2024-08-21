@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4e954650808964496920200d1d0fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 30
+  jumpForce: 80
   maxJump: 100
   moveForce: 50
   moveSpeed: 100
@@ -5483,7 +5483,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: a662aaf336cdea64598517157c2d6152, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6046,6 +6046,8 @@ GameObject:
   - component: {fileID: 8228130908409518128}
   - component: {fileID: 17693006254082355}
   - component: {fileID: 5589665162726633208}
+  - component: {fileID: 1341903641527853655}
+  - component: {fileID: 2522985370702754848}
   m_Layer: 0
   m_Name: slime_retry
   m_TagString: Untagged
@@ -6115,7 +6117,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 5179f4bcb0112d94fa182619872fd274, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6188,12 +6190,36 @@ MonoBehaviour:
   bigResourceValue: 3
   smallResourceValue: 0.5
   currentSizeValue: 1
-  scaleSpeed: 1
+  scaleSpeed: 2
   scaleOffset: 0
   bigResource: {fileID: 0}
   smallResource: {fileID: 0}
   currentSize: {fileID: 0}
   viewport: {fileID: 0}
+--- !u!114 &1341903641527853655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318515130225472225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bebe0e8be61c97c4c875b1f65897b310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2522985370702754848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318515130225472225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bebe0e8be61c97c4c875b1f65897b310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8899318286741378380
 GameObject:
   m_ObjectHideFlags: 0

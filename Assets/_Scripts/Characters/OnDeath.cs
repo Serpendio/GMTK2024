@@ -17,6 +17,6 @@ public class OnDeath : MonoBehaviour, IOnDeath
     {
         audioSingle?.PlaySFX(audioSingle.slimeSquash, component.transform.position);
         Instantiate(this.DeathVFX, component.transform.position, component.transform.rotation);
-        Destroy(component.gameObject.transform.parent.gameObject);
+        Destroy(component.transform.parent.gameObject);
     }
 }

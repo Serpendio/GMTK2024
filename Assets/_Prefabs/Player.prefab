@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4687285029922051477}
-  baseSize: 5
-  trackSpeed: 2
+  baseSize: 8
+  trackSpeed: 10
   offset: {x: 0, y: 2, z: -10}
 --- !u!50 &2346029487675331470
 Rigidbody2D:
@@ -227,25 +227,9 @@ PrefabInstance:
       propertyPath: viewport
       value: 
       objectReference: {fileID: 6573763418118729066}
-    - target: {fileID: 5589665162726633208, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
-      propertyPath: scaleSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479823262435180212, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
-      propertyPath: jumpForce
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 8318515130225472225, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: m_Name
       value: slime_retry
-      objectReference: {fileID: 0}
-    - target: {fileID: 8470069079720051865, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8720572654554492677, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
-      propertyPath: m_SortingOrder
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8753411821427784915, guid: cc706fe9ab0963d42a1815d00ef08ea6, type: 3}
       propertyPath: m_LocalPosition.x

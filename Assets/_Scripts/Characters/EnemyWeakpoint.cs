@@ -79,10 +79,8 @@ public class EnemyWeakpoint : MonoBehaviour
 
             if (player.transform.localScale.x < .4f)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-                audioSingle?.PlaySFX(audioSingle?.primeSlimeHit);
-                audioSingle?.PlaySFX(audioSingle?.slimeSquash, Vector3.zero);
+                player.GetComponent<IOnDeath>()
+                    .Die(player.transform);
             }
             else if (shouldPlayPrimeHitSFX)
             {

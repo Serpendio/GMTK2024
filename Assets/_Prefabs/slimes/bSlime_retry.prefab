@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 4284054174206119267}
   - component: {fileID: 3625536401557953794}
   - component: {fileID: 1480398401240153284}
+  - component: {fileID: 155560089143283664}
   m_Layer: 0
   m_Name: bSlime_retry
   m_TagString: BigSlime
@@ -462,7 +463,6 @@ MonoBehaviour:
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}
-  DeathVFX: {fileID: 6641698559496121866, guid: d5f9e74a0414dfe4090f78754cef5a21, type: 3}
 --- !u!114 &3625536401557953794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +493,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b119f7413fad5d469bc38fae2020bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &155560089143283664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866153649241235035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d693a6f7ef1a4e7499d19848a5a78c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathVFX: {fileID: 6641698559496121866, guid: d5f9e74a0414dfe4090f78754cef5a21, type: 3}
 --- !u!1 &1004303116942681895
 GameObject:
   m_ObjectHideFlags: 0

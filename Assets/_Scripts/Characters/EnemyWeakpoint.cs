@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(IOnDeath))]
 public class EnemyWeakpoint : MonoBehaviour
 {
     public bool playerShouldBeBigger = false;
@@ -23,12 +22,12 @@ public class EnemyWeakpoint : MonoBehaviour
     bool shouldPlayHitSFX = true;
     bool shouldApplyForce = true;
     float sizeFactor = 1;
-    [SerializeField] GameObject DeathVFX;
-
+    IOnDeath onDeath;
 
     void Awake()
     {
         self = GetComponent<Resources>();
+        onDeath= GetComponent<IOnDeath>();
     }
     private void Start()
     {
@@ -114,9 +113,7 @@ public class EnemyWeakpoint : MonoBehaviour
 
             if (shouldDie)
             {
-                audioSingle?.PlaySFX(audioSingle?.slimeSquash, self.rb.position);
-                Instantiate(this.DeathVFX, self.rb.position, self.rb.transform.rotation);
-                Destroy(gameObject);
+                onDeath.Die(self.rb);
             }
             else if (shouldPlayHitSFX)
             {

@@ -388,7 +388,7 @@ MonoBehaviour:
   giveDamageSpeed: 1
   takeDamageSpeed: 1
   resourceMultiplier: 0.5
-  separationForce: 5000
+  separationForce: 2500
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}

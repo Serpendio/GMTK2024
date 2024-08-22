@@ -145,12 +145,12 @@ public class EnemyWeakpoint : MonoBehaviour
         //add min/max velocity?
         if (playerTakeDamage || selfTakeDamage)
         {
-            player.rb.AddForce(self.rb.position.DirectionTo(player.rb.position) * sizeFactor * separationForce * Time.deltaTime, ForceMode2D.Impulse);
+            player.rb.AddForce(self.rb.position.DirectionTo(player.rb.position) * currentPlayerSize * separationForce * Time.deltaTime, ForceMode2D.Impulse);
             playerTakeDamage = false;
         }
         if (selfTakeDamage)
         {
-            self.rb.AddForce(player.rb.position.DirectionTo(self.rb.position) * sizeFactor * separationForce * Time.deltaTime, ForceMode2D.Impulse);
+            self.rb.AddForce(player.rb.position.DirectionTo(self.rb.position) * currentSize * separationForce * Time.deltaTime, ForceMode2D.Impulse);
             selfTakeDamage = false;
         }
     }

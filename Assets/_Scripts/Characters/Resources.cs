@@ -11,6 +11,7 @@ public class Resources : MonoBehaviour
     public float bigResourceValue = 0, smallResourceValue = 0, currentSizeValue = 1;
     public float scaleSpeed = 1f;
     public float scaleOffset;
+    public float BaseSize => 1 + scaleOffset;
 
     private void Awake()
     {

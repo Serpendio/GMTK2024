@@ -22,6 +22,8 @@ public class EnemyWeakpoint : MonoBehaviour
     bool shouldPlayHitSFX = true;
     bool shouldApplyForce = true;
     float sizeFactor = 1;
+    float currentSize = 1;
+    float currentPlayerSize = 1;
     IOnDeath onDeath;
 
     void Awake()
@@ -41,10 +43,15 @@ public class EnemyWeakpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentSize = transform.localScale.x * self.BaseSize;
+        if(player != null)
+        {
+            currentPlayerSize = player.transform.localScale.x * player.BaseSize;
+        }
         if (numCorrect > 0)
         {
-            selfTakeDamage = (playerShouldBeBigger && player.transform.localScale.x > transform.localScale.x)
-                || (!playerShouldBeBigger && player.transform.localScale.x < transform.localScale.x);
+            selfTakeDamage = (playerShouldBeBigger && currentPlayerSize > currentSize)
+                || (!playerShouldBeBigger && currentPlayerSize < currentSize);
             playerTakeDamage = !selfTakeDamage;
         }
         else if (numIncorrect > 0)
@@ -54,7 +61,7 @@ public class EnemyWeakpoint : MonoBehaviour
 
         if(playerTakeDamage || selfTakeDamage)
         {
-            var sizeRatio = transform.localScale.x / player.transform.localScale.x;
+            var sizeRatio = currentSize / currentPlayerSize;
             if (playerShouldBeBigger)
             {
                 sizeFactor = sizeRatio;
@@ -68,6 +75,7 @@ public class EnemyWeakpoint : MonoBehaviour
         {
             var damage = giveDamageSpeed * sizeFactor * Time.deltaTime;
             player.transform.localScale -= damage * Vector3.one;
+            
             if (affectsBigResource)
             {
                 player.AddBigResource(-damage * resourceMultiplier);
@@ -77,7 +85,7 @@ public class EnemyWeakpoint : MonoBehaviour
                 player.AddSmallResource(-damage * resourceMultiplier);
             }
 
-            if (player.transform.localScale.x < .4f)
+            if (currentPlayerSize <  .4f * player.BaseSize)
             {
                 player.GetComponent<IOnDeath>()
                     .Die(player.transform);
@@ -97,16 +105,18 @@ public class EnemyWeakpoint : MonoBehaviour
             if (affectsBigResource)
             {
                 transform.localScale -= damage * Vector3.one;
+
                 self.AddBigResource(-damage * resourceMultiplier);
                 player.AddBigResource(damage * resourceMultiplier);
-                shouldDie = transform.localScale.x < .4f;
+                shouldDie = currentSize < .4f * self.BaseSize;
             }
             else
             {
                 transform.localScale += damage * Vector3.one;
+                
                 self.AddSmallResource(-damage * resourceMultiplier);
                 player.AddSmallResource(damage * resourceMultiplier);
-                shouldDie = transform.localScale.x > 2.1f;
+                shouldDie = currentSize > 2.1f * self.BaseSize;
             }
 
             if (shouldDie)
@@ -132,15 +142,15 @@ public class EnemyWeakpoint : MonoBehaviour
         }
 
         StartCoroutine(Cr_ApplyForceCheck());
-
+        //add min/max velocity?
         if (playerTakeDamage || selfTakeDamage)
         {
-            player.rb.AddForce(self.rb.position.DirectionTo(player.rb.position) * transform.localScale.x * separationForce * Time.deltaTime, ForceMode2D.Impulse);
+            player.rb.AddForce(self.rb.position.DirectionTo(player.rb.position) * sizeFactor * separationForce * Time.deltaTime, ForceMode2D.Impulse);
             playerTakeDamage = false;
         }
         if (selfTakeDamage)
         {
-            self.rb.AddForce(player.rb.position.DirectionTo(self.rb.position) * player.transform.localScale.x * separationForce * Time.deltaTime, ForceMode2D.Impulse);
+            self.rb.AddForce(player.rb.position.DirectionTo(self.rb.position) * sizeFactor * separationForce * Time.deltaTime, ForceMode2D.Impulse);
             selfTakeDamage = false;
         }
     }

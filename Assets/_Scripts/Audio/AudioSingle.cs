@@ -91,6 +91,6 @@ public class AudioSingle : _Singleton<AudioSingle>
         audioSource.volume= volume;
         audioSource.Play();
 
-        Destroy(audioSource, clip.length);
+        Destroy(audioSource.gameObject, clip.length);
     }
 }

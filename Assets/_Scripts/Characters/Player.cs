@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 {
     public float jumpForce = 30, maxJump = 4, moveForce = 10, moveSpeed = 10;
     float moveAmount;
-    public int canJump = 0;
+    public bool canJump = false;
+    public float jumpGravityScale = 0.5f;
     Rigidbody2D rb;
     [SerializeField] Resources resources;
     AudioSingle audioSingle;
@@ -33,14 +34,25 @@ public class Player : MonoBehaviour
             speedFactor = 1 - Mathf.Sqrt(resources.currentSizeValue - 1) / 5;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && (canJump > 0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(jumpForce * speedFactor * Vector2.up, ForceMode2D.Impulse);
-            if (rb.velocity.y > maxJump)
+            if(canJump)
             {
-                rb.velocity = new Vector2(rb.velocity.x, maxJump);
+                rb.AddForce(jumpForce * speedFactor * Vector2.up, ForceMode2D.Impulse);
+                if (rb.velocity.y > maxJump)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, maxJump);
+                }
+                audioSingle?.PlaySFX(audioSingle.slimeHit);
             }
-            audioSingle?.PlaySFX(audioSingle.slimeHit);
+        }
+        if(Input.GetKey(KeyCode.Space))
+        {
+            rb.gravityScale = jumpGravityScale;
+        }
+        else
+        {
+            rb.gravityScale = 1;
         }
         moveAmount = Input.GetAxis("Horizontal") * speedFactor;
     }

@@ -10,7 +10,7 @@ public class JumpCheck : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            player.canJump += 1;
+            player.canJump = true;
         }
     }
 
@@ -18,7 +18,7 @@ public class JumpCheck : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            player.canJump -= 1;
+            player.canJump = false;
         }
     }
 }

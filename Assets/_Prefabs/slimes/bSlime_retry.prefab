@@ -459,7 +459,7 @@ MonoBehaviour:
   giveDamageSpeed: 1
   takeDamageSpeed: 1
   resourceMultiplier: 0.5
-  separationForce: 5000
+  separationForce: 4000
   numIncorrect: 0
   numCorrect: 0
   player: {fileID: 0}
@@ -687,6 +687,7 @@ GameObject:
   - component: {fileID: 4423998389909082628}
   - component: {fileID: 6470493258514347625}
   - component: {fileID: 8300100828043868665}
+  - component: {fileID: 746615225176903997}
   m_Layer: 0
   m_Name: bone_7
   m_TagString: BigSlime
@@ -1788,7 +1789,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 0.7
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5695,6 +5696,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &746615225176903997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549434810596943480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3798f81bf5d454d9e82a2f12f4ebb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3554852821673960864
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float nextWaypointDistance = 1f;
 
     [Header("Jump")]
+    [SerializeField] bool isFlying = false;
     public float groundCheckOffsetX = 1f;
     public float groundCheckOffsetY = 0.5f;
     float offsetX;
@@ -116,16 +117,22 @@ public class EnemyBehaviour : MonoBehaviour
         if (currentWaypoint >= path.vectorPath.Count)
             return;
 
-        this.isGrounded = IsGrounded();
-        if (!this.isGrounded)
-            return;
+        if (!isFlying)
+        {
+            this.isGrounded = IsGrounded();
+            if (!this.isGrounded)
+                return;
+        }
 
         Vector2 direction = body.position.DirectionTo((Vector2)path.vectorPath[currentWaypoint]);
         
-        bool isBLocked = body.position.IsBlocked(new Vector2(direction.x,-0.3f*Mathf.Abs(direction.x)).normalized,this.offsetX);
-        if(this.isGrounded && isBLocked)
+        if(!isFlying)
         {
-            body.AddForce(Data.JumpForce * Time.deltaTime * new Vector2(direction.x/10,1).normalized, ForceMode2D.Impulse);
+            bool isBLocked = body.position.IsBlocked(new Vector2(direction.x,-0.3f*Mathf.Abs(direction.x)).normalized,this.offsetX);
+            if(this.isGrounded && isBLocked)
+            {
+                body.AddForce(Data.JumpForce * Time.deltaTime * new Vector2(direction.x/10,1).normalized, ForceMode2D.Impulse);
+            }
         }
         var force = Data.Speed * Time.deltaTime * direction;
         if (target == null)

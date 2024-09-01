@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(IOnDeath))]
 public class EnemyWeakpoint : MonoBehaviour
@@ -25,11 +24,13 @@ public class EnemyWeakpoint : MonoBehaviour
     float currentSize = 1;
     float currentPlayerSize = 1;
     IOnDeath onDeath;
+    HitEffect hitEffect;
 
     void Awake()
     {
         self = GetComponent<Resources>();
-        onDeath= GetComponent<IOnDeath>();
+        onDeath = GetComponent<IOnDeath>();
+        hitEffect = GetComponent<HitEffect>();
     }
     private void Start()
     {
@@ -44,7 +45,7 @@ public class EnemyWeakpoint : MonoBehaviour
     void Update()
     {
         currentSize = transform.localScale.x * self.BaseSize;
-        if(player != null)
+        if (player != null)
         {
             currentPlayerSize = player.transform.localScale.x * player.BaseSize;
         }
@@ -59,7 +60,7 @@ public class EnemyWeakpoint : MonoBehaviour
             playerTakeDamage = true;
         }
 
-        if(playerTakeDamage || selfTakeDamage)
+        if (playerTakeDamage || selfTakeDamage)
         {
             var sizeRatio = currentSize / currentPlayerSize;
             if (playerShouldBeBigger)
@@ -75,7 +76,7 @@ public class EnemyWeakpoint : MonoBehaviour
         {
             var damage = giveDamageSpeed * sizeFactor * Time.deltaTime;
             player.transform.localScale -= damage * Vector3.one;
-            
+
             if (affectsBigResource)
             {
                 player.AddBigResource(-damage * resourceMultiplier);
@@ -85,7 +86,7 @@ public class EnemyWeakpoint : MonoBehaviour
                 player.AddSmallResource(-damage * resourceMultiplier);
             }
 
-            if (currentPlayerSize <  .4f * player.BaseSize)
+            if (currentPlayerSize < .4f * player.BaseSize)
             {
                 player.GetComponent<IOnDeath>()
                     .Die(player.transform);
@@ -94,6 +95,7 @@ public class EnemyWeakpoint : MonoBehaviour
             {
                 StartCoroutine(Cr_SFXPrimeHitCheck());
                 audioSingle?.PlaySFX(audioSingle?.primeSlimeHit);
+                player.GetComponent<HitEffect>().PlayEffect();
             }
 
         }
@@ -113,7 +115,7 @@ public class EnemyWeakpoint : MonoBehaviour
             else
             {
                 transform.localScale += damage * Vector3.one;
-                
+
                 self.AddSmallResource(-damage * resourceMultiplier);
                 player.AddSmallResource(damage * resourceMultiplier);
                 shouldDie = currentSize > 2.1f * self.BaseSize;
@@ -127,12 +129,13 @@ public class EnemyWeakpoint : MonoBehaviour
             {
                 StartCoroutine(Cr_SFXHitCheck());
                 audioSingle?.PlaySFX(audioSingle?.slimeHit, self.rb.position);
+                hitEffect?.PlayEffect();
             }
         }
     }
     private void FixedUpdate()
     {
-        if(!(playerTakeDamage || selfTakeDamage))
+        if (!(playerTakeDamage || selfTakeDamage))
             return;
         if (!shouldApplyForce)
         {
@@ -156,15 +159,15 @@ public class EnemyWeakpoint : MonoBehaviour
     }
     IEnumerator Cr_SFXPrimeHitCheck()
     {
-        shouldPlayPrimeHitSFX= false;
-    
+        shouldPlayPrimeHitSFX = false;
+
         yield return new WaitForSecondsRealtime(0.3f);
-        shouldPlayPrimeHitSFX= true;
+        shouldPlayPrimeHitSFX = true;
     }
     IEnumerator Cr_SFXHitCheck()
     {
         shouldPlayHitSFX = false;
-    
+
         yield return new WaitForSecondsRealtime(0.3f);
         shouldPlayHitSFX = true;
     }
@@ -177,7 +180,7 @@ public class EnemyWeakpoint : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if(player != null)
+        if (player != null)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(self.rb.position, player.rb.position);

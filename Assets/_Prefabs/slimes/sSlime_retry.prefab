@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 5127555511406431310}
   - component: {fileID: 3204194448012689340}
   - component: {fileID: 482448762670626697}
+  - component: {fileID: 688721634481936844}
   m_Layer: 0
   m_Name: sSlime_retry
   m_TagString: Untagged
@@ -249,7 +250,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 7da37239380ef39488519dbb76f8049a, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -369,6 +370,7 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 9ada0c65cc7505948ba2f45b8062a7a0, type: 2}
   pathUpdateSeconds: 0.5
   nextWaypointDistance: 1
+  isFlying: 0
   groundCheckOffsetX: 1
   groundCheckOffsetY: 0.5
   body: {fileID: 6689133045933815069}
@@ -436,6 +438,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathVFX: {fileID: 6641698559496121866, guid: 2d7b6b50d5874904d8092d96c3d5bf45, type: 3}
+--- !u!114 &688721634481936844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851808960722281125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1aee3815a2f151469131cddc95a937d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
 --- !u!1 &1427625146186588651
 GameObject:
   m_ObjectHideFlags: 0

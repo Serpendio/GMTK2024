@@ -8,6 +8,7 @@ public class Resources : MonoBehaviour
     public float scaleSpeed = 1f;
     public float scaleOffset;
     public float BaseSize => 1 + scaleOffset;
+    public float CurrentSize => transform.localScale.x * BaseSize;
 
     private void Awake()
     {

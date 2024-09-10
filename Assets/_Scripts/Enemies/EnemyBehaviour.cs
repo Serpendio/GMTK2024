@@ -32,7 +32,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
 
-        offsetX = Data.Size * transform.localScale.x  + groundCheckOffsetX;
+        offsetX = Data.Size * transform.localScale.x + groundCheckOffsetX;
         offsetY = Data.Size * transform.localScale.x + groundCheckOffsetY;
 
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
@@ -44,9 +44,9 @@ public class EnemyBehaviour : MonoBehaviour
             return;
 
         currentIdleTime++;
-        if(currentIdleTime >= Data.IdleSeconds)
+        if (currentIdleTime >= Data.IdleSeconds)
         {
-            isIdle= true;
+            isIdle = true;
         }
     }
     bool TargetInRange()
@@ -54,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
         target = Physics2D.OverlapCircleAll(body.position, Data.AwarenessRange * transform.localScale.x)
             .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
 
-        if(target==null)
+        if (target == null)
             return false;
 
         var check = body.position.Distance(target.transform.position.To2D()) < Data.AwarenessRange * transform.localScale.x;
@@ -84,7 +84,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             seeker.StartPath(body.position, target.position, OnPathComplete);
         }
-        else if(IdleTarget())
+        else if (IdleTarget())
         {
             seeker.StartPath(body.position, idleTarget, OnPathComplete);
         }
@@ -95,9 +95,9 @@ public class EnemyBehaviour : MonoBehaviour
         if (!this.isIdle)
             return false;
 
-        var idleDistance = Random.Range(Data.Size + Data.IdleRange/3, Data.IdleRange)  * transform.localScale.x;
-        this.idleTarget = body.position + new Vector2(idleDistance * RandomExt.Sign(),0);
-        isIdle= false;
+        var idleDistance = Random.Range(Data.Size + Data.IdleRange / 3, Data.IdleRange) * transform.localScale.x;
+        this.idleTarget = body.position + new Vector2(idleDistance * RandomExt.Sign(), 0);
+        isIdle = false;
         currentIdleTime = 0;
         return true;
     }
@@ -125,13 +125,13 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         Vector2 direction = body.position.DirectionTo((Vector2)path.vectorPath[currentWaypoint]);
-        
-        if(!isFlying)
+
+        if (!isFlying)
         {
-            bool isBLocked = body.position.IsBlocked(new Vector2(direction.x,-0.3f*Mathf.Abs(direction.x)).normalized,this.offsetX);
-            if(this.isGrounded && isBLocked)
+            bool isBLocked = body.position.IsBlocked(new Vector2(direction.x, -0.3f * Mathf.Abs(direction.x)).normalized, this.offsetX);
+            if (this.isGrounded && isBLocked)
             {
-                body.AddForce(Data.JumpForce * Time.deltaTime * new Vector2(direction.x/10,1).normalized, ForceMode2D.Impulse);
+                body.AddForce(Data.JumpForce * Time.deltaTime * new Vector2(direction.x / 10, 1).normalized, ForceMode2D.Impulse);
             }
         }
         var force = Data.Speed * Time.deltaTime * direction;
@@ -155,7 +155,7 @@ public class EnemyBehaviour : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(this.body.position, Data.Size * transform.localScale.x);
 
-        Gizmos.color= Color.red;
+        Gizmos.color = Color.red;
         Gizmos.DrawLine(this.body.position, body.position + Vector2.right * offsetX);
         Gizmos.DrawLine(this.body.position, body.position + Vector2.left * offsetX);
         Gizmos.DrawLine(this.body.position, body.position + Vector2.down * offsetY);

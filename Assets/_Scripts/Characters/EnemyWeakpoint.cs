@@ -41,7 +41,7 @@ public class EnemyWeakpoint : MonoBehaviour
     }
     private void OnValidate()
     {
-        player = FindObjectOfType<PlayerResources>();
+        player ??= FindObjectOfType<PlayerResources>();
     }
     // Update is called once per frame
     void Update()

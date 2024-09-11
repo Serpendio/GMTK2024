@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public static class Vector2Ext
 {
@@ -20,14 +18,33 @@ public static class Vector2Ext
     public static Vector3 To3D(this Vector2 vector, float? z = null)
         => new Vector3(vector.x, vector.y, (float)(z == null ? 0 : z));
     public static Vector2 RandomDirection()
-        => Random.insideUnitCircle.normalized;
+        => UnityEngine.Random.insideUnitCircle.normalized;
     public static Vector2 RandomVector(float maxMagnitude, float minMagnitude = 0)
     {
-        var factor = Random.Range(minMagnitude, maxMagnitude);
+        var factor = UnityEngine.Random.Range(minMagnitude, maxMagnitude);
 
         return factor * RandomDirection();
     }
     public static bool IsBlocked(this Vector2 position, Vector2 direction, float offset)
         => Physics2D.RaycastAll(position, direction, offset)
         .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));
+
+    /// <summary>
+    /// wrapper for <see cref="Physics2D"/> operations
+    /// </summary>
+    public static PhysicsWrapper Physics(this Vector2 position)
+        => new(position);
+    public struct PhysicsWrapper
+    {
+        readonly Vector2 position;
+        public PhysicsWrapper(Vector2 position)
+        {
+            this.position = position;
+        }
+        public Collider2D[] OverlapCircleAll(float radius)
+            => Physics2D.OverlapCircleAll(position, radius) ?? Array.Empty<Collider2D>();
+        public RaycastHit2D Raycast(Vector2 direction, float distance)
+            => Physics2D.Raycast(position, direction, distance);
+    }
+
 }

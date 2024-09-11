@@ -3,6 +3,8 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Seeker))]
+[RequireComponent(typeof(Resources))]
+[RequireComponent(typeof(EnemyWeakpoint))]
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] EnemyData Data;
@@ -26,17 +28,25 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] Rigidbody2D body;
     bool isIdle = true;
     int currentIdleTime = 0;
+    Resources resources;
+    EnemyWeakpoint weakPoint;
 
 
     private void Awake()
     {
         seeker = GetComponent<Seeker>();
+        resources = GetComponent<Resources>();
+        weakPoint = GetComponent<EnemyWeakpoint>();
 
-        offsetX = Data.Size * transform.localScale.x + groundCheckOffsetX;
-        offsetY = Data.Size * transform.localScale.x + groundCheckOffsetY;
+        offsetX = resources.CurrentSize + groundCheckOffsetX;
+        offsetY = resources.CurrentSize + groundCheckOffsetY;
 
         InvokeRepeating(nameof(UpdatePath), 0f, this.pathUpdateSeconds);
         InvokeRepeating(nameof(UpdateIdleTime), 0f, 1);
+    }
+    private void OnValidate()
+    {
+        resources ??= GetComponent<Resources>();
     }
     void UpdateIdleTime()
     {
@@ -51,8 +61,10 @@ public class EnemyBehaviour : MonoBehaviour
     }
     bool TargetInRange()
     {
-        target = Physics2D.OverlapCircleAll(body.position, Data.AwarenessRange * transform.localScale.x)
-            .FirstOrDefault(c => c.CompareTag("Player"))?.transform;
+        target = body.position.Physics()
+            .OverlapCircleAll(Data.AwarenessRange * transform.localScale.x)
+            .FirstOrDefault(c => c.CompareTag("Player"))?
+            .transform;
 
         if (target == null)
             return false;
@@ -66,9 +78,29 @@ public class EnemyBehaviour : MonoBehaviour
 
         return check;
     }
+    bool TargetIsWeaker()
+    {
+        var targetResources = target.GetComponentInParent<Resources>();
+        if (weakPoint.playerShouldBeBigger)
+        {
+            if (resources.CurrentSize < targetResources.CurrentSize)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if (resources.CurrentSize > targetResources.CurrentSize)
+            {
+                return false;
+            }
+        }
 
+        return true;
+    }
     bool IsGrounded()
-        => Physics2D.OverlapCircleAll(body.position, offsetY)
+        => body.position.Physics()
+            .OverlapCircleAll(offsetY)
             .FirstOrDefault(c => c.CompareTag("Ground")) != null;
 
     private void FixedUpdate()
@@ -82,7 +114,10 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (TargetInRange())
         {
-            seeker.StartPath(body.position, target.position, OnPathComplete);
+            if (TargetIsWeaker())
+                seeker.StartPath(body.position, target.position, OnPathComplete);
+            else
+                seeker.StartPath(body.position, body.position + (target.position.DirectionTo(body.position).To2D() * transform.localScale.x), OnPathComplete);
         }
         else if (IdleTarget())
         {
@@ -95,7 +130,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (!this.isIdle)
             return false;
 
-        var idleDistance = Random.Range(Data.Size + Data.IdleRange / 3, Data.IdleRange) * transform.localScale.x;
+        var idleDistance = Random.Range(resources.BaseSize + Data.IdleRange / 3, Data.IdleRange) * transform.localScale.x;
         this.idleTarget = body.position + new Vector2(idleDistance * RandomExt.Sign(), 0);
         isIdle = false;
         currentIdleTime = 0;
@@ -153,7 +188,7 @@ public class EnemyBehaviour : MonoBehaviour
         Gizmos.DrawWireSphere(this.body.position, Data.AwarenessRange * transform.localScale.x);
         Gizmos.DrawWireSphere(this.body.position, Data.IdleRange * transform.localScale.x);
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(this.body.position, Data.Size * transform.localScale.x);
+        Gizmos.DrawWireSphere(this.body.position, resources.CurrentSize);
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(this.body.position, body.position + Vector2.right * offsetX);

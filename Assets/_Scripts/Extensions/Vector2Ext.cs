@@ -26,7 +26,8 @@ public static class Vector2Ext
         return factor * RandomDirection();
     }
     public static bool IsBlocked(this Vector2 position, Vector2 direction, float offset)
-        => Physics2D.RaycastAll(position, direction, offset)
+        => position.Physics()
+        .RaycastAll(direction, offset)
         .FirstOrDefault(c => c.collider != null && c.collider.CompareTag("Ground"));
 
     /// <summary>
@@ -45,6 +46,16 @@ public static class Vector2Ext
             => Physics2D.OverlapCircleAll(position, radius) ?? Array.Empty<Collider2D>();
         public RaycastHit2D Raycast(Vector2 direction, float distance)
             => Physics2D.Raycast(position, direction, distance);
-    }
+        public RaycastHit2D RaycastTo(Vector2 target, float distance = -1)
+        {
+            if (position == target)
+                return default;
 
+            var vectorTo = position.VectorTo(target);
+            distance = distance > 0 ? distance : vectorTo.magnitude;
+            return Raycast(vectorTo.normalized, distance);
+        }
+        public RaycastHit2D[] RaycastAll(Vector2 direction, float offset)
+            => Physics2D.RaycastAll(position, direction, offset);
+    }
 }

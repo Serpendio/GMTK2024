@@ -13,6 +13,8 @@ public class EnemyBehaviour : MonoBehaviour
     Vector3 idleTarget;
     public float pathUpdateSeconds = 0.5f;
     public float nextWaypointDistance = 1f;
+    [SerializeField] bool needsSight = true;
+    [SerializeField] bool mightFlee = true;
 
     [Header("Jump")]
     [SerializeField] bool isFlying = false;
@@ -69,6 +71,12 @@ public class EnemyBehaviour : MonoBehaviour
         if (target == null)
             return false;
 
+        if (needsSight &&
+            body.position.Physics()
+            .RaycastTo(target.position)
+            .collider.CompareTag("Ground"))
+            return false;
+
         var check = body.position.Distance(target.transform.position.To2D()) < Data.AwarenessRange * transform.localScale.x;
         if (check)
         {
@@ -114,7 +122,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (TargetInRange())
         {
-            if (TargetIsWeaker())
+            if (!mightFlee || TargetIsWeaker())
                 seeker.StartPath(body.position, target.position, OnPathComplete);
             else
                 seeker.StartPath(body.position, body.position + (target.position.DirectionTo(body.position).To2D() * transform.localScale.x), OnPathComplete);

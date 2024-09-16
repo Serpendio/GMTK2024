@@ -6320,6 +6320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.2
+  hitSFX: {fileID: 8300000, guid: 998f4f92a323fe142830bea226a885ce, type: 3}
 --- !u!1 &8899318286741378380
 GameObject:
   m_ObjectHideFlags: 0

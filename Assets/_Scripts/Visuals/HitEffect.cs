@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class HitEffect : MonoBehaviour
 {
+    AudioSingle audioSingle;
     [SerializeField] float duration = 0.2f;
     int flashValue = Shader.PropertyToID("_FlashValue");
     SpriteRenderer[] renderers;
     Material[] materials;
+    bool shouldPlayHitSFX = true;
+    [SerializeField] AudioClip hitSFX;
 
     private void Awake()
     {
@@ -17,12 +20,25 @@ public class HitEffect : MonoBehaviour
             materials[i] = renderers[i].material;
         }
     }
+    private void Start()
+    {
+        audioSingle = AudioSingle.Instance;
+        if (audioSingle == null)
+        {
+            Debug.LogWarning("missing AudioSingle instance!", this);
+        }
+    }
     public void PlayEffect()
     {
-        StartCoroutine(Cr_AppyEffect());
+        StartCoroutine(Cr_ApplyEffect());
+
+        if (shouldPlayHitSFX)
+            audioSingle?.PlaySFX(this.hitSFX);
+        else
+            StartCoroutine(Cr_SFXHitCheck());
     }
 
-    IEnumerator Cr_AppyEffect()
+    IEnumerator Cr_ApplyEffect()
     {
         yield return StartCoroutine(Cr_Lerp(0f, 1f));
         yield return StartCoroutine(Cr_Lerp(1f, 0f));
@@ -42,5 +58,12 @@ public class HitEffect : MonoBehaviour
             }
             yield return null;
         }
+    }
+    IEnumerator Cr_SFXHitCheck()
+    {
+        shouldPlayHitSFX = false;
+
+        yield return new WaitForSecondsRealtime(0.3f);
+        shouldPlayHitSFX = true;
     }
 }

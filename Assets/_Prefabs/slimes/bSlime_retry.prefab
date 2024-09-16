@@ -440,6 +440,8 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 76d808a735704564993196d2ec9f3e15, type: 2}
   pathUpdateSeconds: 0.5
   nextWaypointDistance: 1
+  needsSight: 1
+  mightFlee: 1
   isFlying: 0
   groundCheckOffsetX: 1
   groundCheckOffsetY: 0.5
@@ -521,6 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.2
+  hitSFX: {fileID: 8300000, guid: e96c04c3a5a1889469eefd94f8b52358, type: 3}
 --- !u!1 &1004303116942681895
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class Resources : MonoBehaviour
+public class Resources : MonoBehaviour, IDamageable
 {
     BonesFormation bonesFormation;
+    IOnDeath onDeath;
+    HitEffect hitEffect;
     public Rigidbody2D rb;
     public float bigResourceValue = 0, smallResourceValue = 0, currentSizeValue = 1;
     public float scaleSpeed = 1f;
@@ -13,6 +15,8 @@ public class Resources : MonoBehaviour
     private void Awake()
     {
         bonesFormation = GetComponent<BonesFormation>();
+        onDeath = GetComponent<IOnDeath>();
+        hitEffect = GetComponent<HitEffect>();
     }
 
     // Start is called before the first frame update
@@ -63,5 +67,39 @@ public class Resources : MonoBehaviour
         {
             smallResourceValue = 0.4f;
         }
+    }
+
+    public float TakeDamage(DamageInfo damage)
+    {
+        float overkill = 0f;
+        if (damage.AffectsBigResource)
+        {
+            if (damage.Amount > bigResourceValue)
+                overkill = damage.Amount - bigResourceValue;
+
+            transform.localScale -= (damage.Amount - overkill) * Vector3.one;
+
+            AddBigResource(-damage.Amount + overkill);
+
+            if (CurrentSize < .4f * BaseSize)
+                onDeath.Die(transform);
+            else
+                hitEffect.PlayEffect();
+        }
+        else
+        {
+            if (damage.Amount > smallResourceValue)
+                overkill = damage.Amount - smallResourceValue;
+
+            transform.localScale += (damage.Amount - overkill) * Vector3.one;
+            AddSmallResource(-damage.Amount + overkill);
+
+            if (CurrentSize > 2.1f * BaseSize)
+                onDeath.Die(transform);
+            else
+                hitEffect.PlayEffect();
+        }
+
+        return overkill;
     }
 }

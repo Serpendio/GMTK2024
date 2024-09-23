@@ -219,6 +219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.2
+  bigColor: {r: 1, g: 0.6627451, b: 0.36862746, a: 0}
+  smallColor: {r: 0.85098046, g: 0.24705884, b: 0.8431373, a: 0}
   hitSFX: {fileID: 8300000, guid: e96c04c3a5a1889469eefd94f8b52358, type: 3}
 --- !u!114 &2163590584370848440
 MonoBehaviour:

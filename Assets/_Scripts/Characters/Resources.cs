@@ -84,7 +84,7 @@ public class Resources : MonoBehaviour, IDamageable
             if (CurrentSize < .4f * BaseSize)
                 onDeath.Die(transform);
             else
-                hitEffect.PlayEffect();
+                hitEffect.PlayBigEffect();
         }
         else
         {
@@ -97,7 +97,7 @@ public class Resources : MonoBehaviour, IDamageable
             if (CurrentSize > 2.1f * BaseSize)
                 onDeath.Die(transform);
             else
-                hitEffect.PlayEffect();
+                hitEffect.PlaySmallEffect();
         }
 
         return overkill;

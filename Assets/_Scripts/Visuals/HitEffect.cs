@@ -6,6 +6,9 @@ public class HitEffect : MonoBehaviour
     AudioSingle audioSingle;
     [SerializeField] float duration = 0.2f;
     int flashValue = Shader.PropertyToID("_FlashValue");
+    int flashColor = Shader.PropertyToID("_HitColor");
+    [SerializeField] Color bigColor;
+    [SerializeField] Color smallColor;
     SpriteRenderer[] renderers;
     Material[] materials;
     bool shouldPlayHitSFX = true;
@@ -27,6 +30,18 @@ public class HitEffect : MonoBehaviour
         {
             Debug.LogWarning("missing AudioSingle instance!", this);
         }
+    }
+    public void PlayBigEffect()
+        => PlayColored(bigColor);
+    public void PlaySmallEffect() =>
+        PlayColored(smallColor);
+    public void PlayColored(Color color)
+    {
+        foreach (var material in materials)
+        {
+            material.SetColor(flashColor, color);
+        }
+        PlayEffect();
     }
     public void PlayEffect()
     {

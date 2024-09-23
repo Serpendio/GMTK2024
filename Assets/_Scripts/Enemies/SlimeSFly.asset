@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SlimeSFly
   m_EditorClassIdentifier: 
   Size: 1
-  Speed: 2000
+  Speed: 1200
   JumpForce: 200
   AwarenessRange: 6
   IdleRange: 3
   IdleSeconds: 4
-  IdleSpeedFactor: 0.4
+  IdleSpeedFactor: 0.6
